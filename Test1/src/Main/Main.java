@@ -1,83 +1,72 @@
 package Main;
 
+import java.awt.*;
+import javax.swing.*;
+
 public class Main extends javax.swing.JFrame {
 
     public Main() {
         initComponents();
+        getContentPane().setBackground(Color.WHITE);
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Pikachu = new javax.swing.JLabel();
         UserPic = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        Text1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        Text2 = new javax.swing.JLabel();
+        Banner = new javax.swing.JLabel();
+        Logo = new javax.swing.JLabel();
+        Door = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setPreferredSize(new java.awt.Dimension(800, 500));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        UserPic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Essentials/User.gif"))); // NOI18N
-        UserPic.setText("User-pic");
-        getContentPane().add(UserPic, new org.netbeans.lib.awtextra.AbsoluteConstraints(423, 0, 283, 450));
+        Pikachu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pokemon/Power1/pikachu.gif"))); // NOI18N
+        getContentPane().add(Pikachu, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 340, 80, -1));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        UserPic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Essentials/user.png"))); // NOI18N
+        getContentPane().add(UserPic, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 80, 283, 450));
+        Icon icono = UserPic.getIcon();
+        Image imagen = ((ImageIcon) icono).getImage().getScaledInstance(120, 200, Image.SCALE_SMOOTH);
+        ImageIcon nuevoIcono = new ImageIcon(imagen);
+        UserPic.setIcon(nuevoIcono);
 
-        Text1.setFont(new java.awt.Font("Source Code Pro", 1, 18)); // NOI18N
-        Text1.setText("¡Bienvenido!");
+        Banner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Essentials/banner.png"))); // NOI18N
+        getContentPane().add(Banner, new org.netbeans.lib.awtextra.AbsoluteConstraints(-3, 0, 270, 500));
 
-        jButton1.setText("Empezar");
-        jButton1.setActionCommand("Boton");
-        jButton1.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(204, 255, 255)));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Essentials/logo.png"))); // NOI18N
+        getContentPane().add(Logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, 370, 200));
+        Icon iconoLogo = Logo.getIcon();
+        Image imagenLogo = ((ImageIcon) iconoLogo).getImage().getScaledInstance(250, 160, Image.SCALE_SMOOTH);
+        ImageIcon nuevoIconoLogo = new ImageIcon(imagenLogo);
+        Logo.setIcon(nuevoIconoLogo);
+
+        Door.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Essentials/door.png"))); // NOI18N
+        Door.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                DoorMouseClicked(evt);
             }
         });
-
-        Text2.setFont(new java.awt.Font("Source Code Pro", 1, 14)); // NOI18N
-        Text2.setText("Tu aventura Pokémon está a punto de comenzar.");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(Text2))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(143, 143, 143)
-                        .addComponent(Text1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(166, 166, 166)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(299, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(118, Short.MAX_VALUE)
-                .addComponent(Text1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(Text2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(145, 145, 145))
-        );
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 450));
+        getContentPane().add(Door, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 250, 180, 210));
+        Icon dooricon = Door.getIcon();
+        Image doorimage = ((ImageIcon) dooricon).getImage().getScaledInstance(150, 180, Image.SCALE_SMOOTH);
+        ImageIcon newdooricon = new ImageIcon(doorimage);
+        Door.setIcon(newdooricon);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void DoorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DoorMouseClicked
+        Initials initials = new Initials();
+        initials.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_DoorMouseClicked
 
     /**
      * @param args the command line arguments
@@ -115,10 +104,10 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Text1;
-    private javax.swing.JLabel Text2;
+    private javax.swing.JLabel Banner;
+    private javax.swing.JLabel Door;
+    private javax.swing.JLabel Logo;
+    private javax.swing.JLabel Pikachu;
     private javax.swing.JLabel UserPic;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
