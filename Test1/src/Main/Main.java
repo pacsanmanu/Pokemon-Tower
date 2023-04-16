@@ -14,36 +14,22 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Pikachu = new javax.swing.JLabel();
-        UserPic = new javax.swing.JLabel();
-        Banner = new javax.swing.JLabel();
         Logo = new javax.swing.JLabel();
         Door = new javax.swing.JLabel();
+        Banner = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setPreferredSize(new java.awt.Dimension(800, 500));
+        setMinimumSize(new java.awt.Dimension(484, 900));
+        setPreferredSize(new java.awt.Dimension(484, 900));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Pikachu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pokemon/Power1/pikachu.gif"))); // NOI18N
-        getContentPane().add(Pikachu, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 340, 80, -1));
-
-        UserPic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Essentials/user.png"))); // NOI18N
-        getContentPane().add(UserPic, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 80, 283, 450));
-        Icon icono = UserPic.getIcon();
-        Image imagen = ((ImageIcon) icono).getImage().getScaledInstance(120, 200, Image.SCALE_SMOOTH);
-        ImageIcon nuevoIcono = new ImageIcon(imagen);
-        UserPic.setIcon(nuevoIcono);
-
-        Banner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Essentials/banner.png"))); // NOI18N
-        getContentPane().add(Banner, new org.netbeans.lib.awtextra.AbsoluteConstraints(-3, 0, 270, 500));
-
         Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Essentials/logo.png"))); // NOI18N
-        getContentPane().add(Logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, 370, 200));
+        getContentPane().add(Logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 370, 200));
         Icon iconoLogo = Logo.getIcon();
-        Image imagenLogo = ((ImageIcon) iconoLogo).getImage().getScaledInstance(250, 160, Image.SCALE_SMOOTH);
+        Image imagenLogo = ((ImageIcon) iconoLogo).getImage().getScaledInstance(300, 192, Image.SCALE_SMOOTH);
         ImageIcon nuevoIconoLogo = new ImageIcon(imagenLogo);
         Logo.setIcon(nuevoIconoLogo);
 
@@ -53,11 +39,14 @@ public class Main extends javax.swing.JFrame {
                 DoorMouseClicked(evt);
             }
         });
-        getContentPane().add(Door, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 250, 180, 210));
+        getContentPane().add(Door, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 430, 180, 210));
         Icon dooricon = Door.getIcon();
-        Image doorimage = ((ImageIcon) dooricon).getImage().getScaledInstance(150, 180, Image.SCALE_SMOOTH);
+        Image doorimage = ((ImageIcon) dooricon).getImage().getScaledInstance(60, 72, Image.SCALE_SMOOTH);
         ImageIcon newdooricon = new ImageIcon(doorimage);
         Door.setIcon(newdooricon);
+
+        Banner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Essentials/banner.png"))); // NOI18N
+        getContentPane().add(Banner, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 900));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -107,7 +96,5 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel Banner;
     private javax.swing.JLabel Door;
     private javax.swing.JLabel Logo;
-    private javax.swing.JLabel Pikachu;
-    private javax.swing.JLabel UserPic;
     // End of variables declaration//GEN-END:variables
 }
