@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="Test1/src"/>
+	<classpathentry kind="lib" path="Test1/dist/lib/AbsoluteLayout.jar"/>
+	<classpathentry kind="lib" path="Test1/dist/lib/mysql-connector-java-8.0.15.jar"/>
+	<classpathentry kind="lib" path="Test1/dist/Test1.jar"/>
+	<classpathentry kind="output" path="Test1/build/classes"/>
+</classpath>
