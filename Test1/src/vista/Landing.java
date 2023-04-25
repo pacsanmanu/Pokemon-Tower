@@ -28,14 +28,14 @@ public class Landing extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Essentials/logo.png"))); // NOI18N
+        Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
         getContentPane().add(Logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, 370, 200));
         Icon iconoLogo = Logo.getIcon();
         Image imagenLogo = ((ImageIcon) iconoLogo).getImage().getScaledInstance(300, 192, Image.SCALE_SMOOTH);
         ImageIcon nuevoIconoLogo = new ImageIcon(imagenLogo);
         Logo.setIcon(nuevoIconoLogo);
 
-        Door.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Essentials/door.png"))); // NOI18N
+        Door.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/door.png"))); // NOI18N
         Door.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 DoorMouseClicked(evt);
@@ -47,7 +47,7 @@ public class Landing extends javax.swing.JFrame {
         ImageIcon newdooricon = new ImageIcon(doorimage);
         Door.setIcon(newdooricon);
 
-        Banner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Essentials/banner.png"))); // NOI18N
+        Banner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/banner.png"))); // NOI18N
         getContentPane().add(Banner, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 900));
 
         pack();

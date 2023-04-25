@@ -1,87 +1,110 @@
 package modelo;
 
 import java.util.ArrayList;
-import javax.swing.ImageIcon;
 
 public class Pokemon {
-    private String nombre;
-    private int ataque;
-    private int vida;
-    private int velocidad;
-    private String imagen;
-    private ArrayList<Ataque> ataques;
-    private int poder;
-    private String evolucion;
+    private String name;
+    private int attack;
+    private int life;
+    private int speed;
+    private String image;
+    private ArrayList<Movement> movements;
+    private int power;
+    private String evolution;
+    private int completed_levels;
+    private int current_life;
     
-    public Pokemon(String nombre, int ataque, int vida, int velocidad, String imagen, ArrayList<Ataque> ataques, int poder, String evolucion){
-        this.nombre = nombre;
-        this.ataque = ataque;
-        this.vida = vida;
-        this.velocidad = velocidad;
-        this.imagen = imagen;
-        this.ataques = ataques;
-        this.poder = poder;
-        this.evolucion = evolucion;
+    public Pokemon(String name, int attack, int life, int speed, String image, ArrayList<Movement> movements, int power, String evolution){
+        this.name = name;
+        this.attack = attack;
+        this.life = life;
+        this.speed = speed;
+        this.image = image;
+        this.movements = movements;
+        this.power = power;
+        this.evolution = evolution;
+        this.completed_levels = 0;
+        this.current_life = life;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getAtaque() {
-        return ataque;
+    public int getAttack() {
+        return attack;
     }
 
-    public void setAtaque(int ataque) {
-        this.ataque = ataque;
+    public void setAttack(int attack) {
+        this.attack = attack;
     }
 
-    public int getVida() {
-        return vida;
+    public int getLife() {
+        return life;
     }
 
-    public void setVida(int vida) {
-        this.vida = vida;
+    public void setLife(int life) {
+        this.life = life;
     }
 
-    public int getVelocidad() {
-        return velocidad;
+    public int getSpeed() {
+        return speed;
     }
 
-    public void setVelocidad(int velocidad) {
-        this.velocidad = velocidad;
+    public void setSpeed(int speed) {
+        this.speed = speed;
     }
 
-    public String getImagen() {
-        return imagen;
+    public String getImage() {
+        return image;
     }
 
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
+    public ArrayList<Movement> getMovements() {
+        return movements;
     }
 
-    public ArrayList<Ataque> getAtaques() {
-        return ataques;
-    }
-
-    public void setAtaques(ArrayList<Ataque> ataques) {
-        this.ataques = ataques;
-    }
-    
-    public int getPoder(){
-        return this.poder;
+    public void setMovements(ArrayList<Movement> movements) {
+        this.movements = movements;
     }
     
-    public void setPoder(int poder){
-        this.poder = poder;
+    public int getPower(){
+        return this.power;
     }
     
-    public String getEvolucion() {
-        return evolucion;
+    public void setPower(int power){
+        this.power = power;
     }
     
+    public String getEvolution() {
+        return evolution;
+    }
+    
+    public void setCompletedLevels(int completedLevels){
+        this.completed_levels = completedLevels;
+    }
+    
+    public int getCompletedLevels(){
+        return completed_levels;
+    }
+    
+    public int getCurrentLife(){
+        return current_life;
+    }
+    
+    public void setCurrentLife(int current_life){
+        this.current_life = current_life;
+    }
+    
+    public void addMovement(Movement m){
+        this.movements.add(m);
+    }
+    
+    public void Attack(Pokemon p){
+        
+    }
 }
+    

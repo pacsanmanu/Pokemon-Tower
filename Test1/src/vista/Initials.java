@@ -4,12 +4,17 @@
  */
 package vista;
 
-import java.net.URL;
+import controlador.Control;
 import javax.swing.*;
 import java.awt.*;
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
+import java.io.IOException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import modelo.Movement;
+import modelo.Pokemon;
+
 
 /**
  *
@@ -59,17 +64,22 @@ public class Initials extends javax.swing.JFrame{
         QueInicial.setFont(new java.awt.Font("Source Code Pro", 1, 14)); // NOI18N
         QueInicial.setText("¿Qué Pokemon inicial quieres escoger?");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pokemon/Initials/charmander.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/charmander.png"))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Source Code Pro", 0, 14)); // NOI18N
         jLabel1.setText("Charmander");
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pokemon/Initials/squirtle.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/squirtle.png"))); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Source Code Pro", 0, 14)); // NOI18N
         jLabel4.setText("Squirtle");
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pokemon/Initials/bulbasaur.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bulbasaur.png"))); // NOI18N
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Source Code Pro", 0, 14)); // NOI18N
         jLabel6.setText("Bulbasaur");
@@ -155,11 +165,27 @@ public class Initials extends javax.swing.JFrame{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        Control controller = new Control();
+        String sentencia = "SELECT * FROM POKEMON WHERE NAME = 'bulbasaur';";
+        Pokemon bulbasaur = null;
+        try {
+            bulbasaur = controller.createPokemon(sentencia);
+        } catch (SQLException ex) {
+            Logger.getLogger(Initials.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        controller.addPokemon(bulbasaur);
+        try {
+            FightView level1 = new FightView(controller);
+        } catch (IOException ex) {
+            Logger.getLogger(Initials.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Initials.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.setVisible(false);
+    }//GEN-LAST:event_jLabel5MouseClicked
     
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel QueInicial;
     private javax.swing.JLabel jLabel1;
