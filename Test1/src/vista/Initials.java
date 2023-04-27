@@ -65,11 +65,21 @@ public class Initials extends javax.swing.JFrame{
         QueInicial.setText("¿Qué Pokemon inicial quieres escoger?");
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/charmander.png"))); // NOI18N
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Source Code Pro", 0, 14)); // NOI18N
         jLabel1.setText("Charmander");
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/squirtle.png"))); // NOI18N
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Source Code Pro", 0, 14)); // NOI18N
         jLabel4.setText("Squirtle");
@@ -176,7 +186,7 @@ public class Initials extends javax.swing.JFrame{
         }
         controller.addPokemon(bulbasaur);
         try {
-            FightView level1 = new FightView(controller);
+            FightView level1 = new FightView(controller, 1);
         } catch (IOException ex) {
             Logger.getLogger(Initials.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -184,6 +194,46 @@ public class Initials extends javax.swing.JFrame{
         }
         this.setVisible(false);
     }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        Control controller = new Control();
+        String sentencia = "SELECT * FROM POKEMON WHERE NAME = 'squirtle';";
+        Pokemon squirtle = null;
+        try {
+            squirtle = controller.createPokemon(sentencia);
+        } catch (SQLException ex) {
+            Logger.getLogger(Initials.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        controller.addPokemon(squirtle);
+        try {
+            FightView level1 = new FightView(controller, 1);
+        } catch (IOException ex) {
+            Logger.getLogger(Initials.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Initials.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.setVisible(false);
+    }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        Control controller = new Control();
+        String sentencia = "SELECT * FROM POKEMON WHERE NAME = 'charmander';";
+        Pokemon charmander = null;
+        try {
+            charmander = controller.createPokemon(sentencia);
+        } catch (SQLException ex) {
+            Logger.getLogger(Initials.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        controller.addPokemon(charmander);
+        try {
+            FightView level1 = new FightView(controller, 1);
+        } catch (IOException ex) {
+            Logger.getLogger(Initials.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Initials.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.setVisible(false);
+    }//GEN-LAST:event_jLabel2MouseClicked
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

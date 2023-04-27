@@ -30,6 +30,10 @@ public class Control {
         player.addPokemon(p);
     }
     
+    public int getTeamSize(){
+        return this.player.getPokemons().size();
+    }
+    
     public Pokemon getPokemon(int index){
         return player.getPokemons().get(index);
     }
@@ -43,7 +47,7 @@ public class Control {
         }
         resultado.close();
         int random = (int)(Math.random() * count);
-        sentencia = "SELECT * FROM pokemon LIMIT " + random + ", 1;";
+        sentencia = "SELECT * FROM pokemon where power = " + power + " LIMIT " + random + ", 1;";
         return createPokemon(sentencia);
     }
     
@@ -116,4 +120,23 @@ public class Control {
         ImageIcon nuevoIcono = new ImageIcon(imagen);
         return nuevoIcono;
     }
+    
+    public void healPokemons(){
+        for(Pokemon p : this.player.getPokemons()){
+            p.setCurrentLife(p.getLife());
+        }
+    }
+    
+    public int getCaptureProbability(){
+        return player.getCaptureProbability();
+    }
+    
+    public void increaseCaptureProbability(int probability){
+        player.increaseCaptureProbability(probability);
+    }
+    
+    public void setCaptureProbability(int probability){
+        player.setCaptureProbability(probability);
+    }
+    
 }

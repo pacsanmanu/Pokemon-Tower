@@ -1,5 +1,6 @@
 package vista;
 import controlador.*;
+import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
@@ -13,19 +14,24 @@ import modelo.*;
 import javax.swing.*;
 
 public class FightView extends javax.swing.JFrame {
-    /**
-     * Creates new form Combat
-     */
-    public FightView(Control control) throws IOException, SQLException {
+    private Pokemon myPokemon;
+    private Pokemon enemy;
+    private int deadPokemons;
+    private Control controller;
+    
+    public FightView(Control control, int power) throws IOException, SQLException {
         initComponents();
+        this.myPokemon = null;
+        this.enemy = null;
         this.setVisible(true);
         this.setLocationRelativeTo(null);
-        Control controller = control;
-        Pokemon myPokemon = controller.getPokemon(0);
+        controller = control;
+        controller.addPokemon(controller.createRandomPokemon(1));
+        myPokemon = controller.getPokemon(0);
         MyPokemon.setIcon(controller.LabelSetImg(myPokemon));
         MyPokemon.setIcon(controller.ScaleIcon(MyPokemon, 200, 200));
         MyPokemonHP.setText("HP: " + myPokemon.getCurrentLife() + " / " + myPokemon.getLife());
-        Pokemon enemy = controller.createRandomPokemon(0);
+        enemy = controller.createRandomPokemon(power);
         Enemy.setIcon(controller.LabelSetImg(enemy));
         Enemy.setIcon(controller.ScaleIcon(Enemy, 200, 200));
         EnemyHP.setText("HP: " + enemy.getCurrentLife() + " / " + enemy.getLife());
@@ -36,6 +42,7 @@ public class FightView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jOptionPane1 = new javax.swing.JOptionPane();
         jPanel1 = new javax.swing.JPanel();
         Enemy = new javax.swing.JLabel();
         MyPokemon = new javax.swing.JLabel();
@@ -43,21 +50,36 @@ public class FightView extends javax.swing.JFrame {
         EnemyHP = new javax.swing.JLabel();
         Attack1 = new javax.swing.JButton();
         Attack2 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Text = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+
+        jOptionPane1.setFont(new java.awt.Font("Source Code Pro", 0, 12)); // NOI18N
+        jOptionPane1.setMaximumSize(new java.awt.Dimension(600, 120));
+        jOptionPane1.setMinimumSize(new java.awt.Dimension(600, 120));
+        jOptionPane1.setPreferredSize(new java.awt.Dimension(600, 120));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 102, 102));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(Enemy, new org.netbeans.lib.awtextra.AbsoluteConstraints(247, 132, 180, 102));
 
         MyPokemon.setBackground(new java.awt.Color(51, 153, 255));
         MyPokemon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/charmander.png"))); // NOI18N
+        jPanel1.add(MyPokemon, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 355, 150, 102));
 
         MyPokemonHP.setFont(new java.awt.Font("Source Code Pro", 1, 14)); // NOI18N
+        MyPokemonHP.setForeground(new java.awt.Color(255, 255, 255));
         MyPokemonHP.setText("PS: ");
+        jPanel1.add(MyPokemonHP, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 295, 110, -1));
 
         EnemyHP.setFont(new java.awt.Font("Source Code Pro", 1, 14)); // NOI18N
+        EnemyHP.setForeground(new java.awt.Color(255, 255, 255));
         EnemyHP.setText("PS: ");
+        jPanel1.add(EnemyHP, new org.netbeans.lib.awtextra.AbsoluteConstraints(278, 85, 110, -1));
 
         Attack1.setText("jButton1");
         Attack1.addActionListener(new java.awt.event.ActionListener() {
@@ -65,6 +87,7 @@ public class FightView extends javax.swing.JFrame {
                 Attack1ActionPerformed(evt);
             }
         });
+        jPanel1.add(Attack1, new org.netbeans.lib.awtextra.AbsoluteConstraints(264, 355, 136, 33));
 
         Attack2.setText("jButton1");
         Attack2.setActionCommand("");
@@ -73,49 +96,17 @@ public class FightView extends javax.swing.JFrame {
                 Attack2ActionPerformed(evt);
             }
         });
+        jPanel1.add(Attack2, new org.netbeans.lib.awtextra.AbsoluteConstraints(264, 419, 136, 33));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(MyPokemonHP, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(MyPokemon, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(247, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(Enemy, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(53, 53, 53))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(EnemyHP, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(92, 92, 92))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(Attack1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Attack2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(91, 91, 91))))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(85, 85, 85)
-                .addComponent(EnemyHP)
-                .addGap(29, 29, 29)
-                .addComponent(Enemy, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61)
-                .addComponent(MyPokemonHP)
-                .addGap(42, 42, 42)
-                .addComponent(MyPokemon, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
-                .addComponent(Attack1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(Attack2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(96, 96, 96))
-        );
+        Text.setColumns(20);
+        Text.setRows(5);
+        jScrollPane1.setViewportView(Text);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 542, 379, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/battle-background.png"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 730));
 
@@ -123,16 +114,186 @@ public class FightView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Attack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Attack1ActionPerformed
-       
+        String act1 = "";
+        String act2 = "";
+        if(myPokemon.getSpeed() >= enemy.getSpeed()){
+            if(myPokemon.getCurrentLife() > 0 && enemy.getCurrentLife() > 0){
+                enemy.setCurrentLife(myPokemon.PokemonAttack(myPokemon.getMovements().get(0), enemy));
+                if(enemy.getCurrentLife() <= 0){
+                        enemy.setCurrentLife(0);
+                    }
+                try {
+                    UpdateView();
+                } catch (IOException ex) {
+                    java.util.logging.Logger.getLogger(FightView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                }
+                act1 = "Tu " + myPokemon.getName() + " ha usado " + myPokemon.getMovements().get(0).getName();
+                if(myPokemon.getCurrentLife() > 0 && enemy.getCurrentLife() > 0){
+                    int random = (int)(Math.random() * 2);
+                    myPokemon.setCurrentLife(enemy.PokemonAttack(enemy.getMovements().get(random), myPokemon));
+                    if(myPokemon.getCurrentLife() <= 0){
+                        myPokemon.setCurrentLife(0);
+                    }
+                    try {
+                        UpdateView();
+                    } catch (IOException ex) {
+                        java.util.logging.Logger.getLogger(FightView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                    }
+                    act2 = "El " + enemy.getName() + " enemigo ha usado " + enemy.getMovements().get(random).getName();
+                }
+            }
+            Text.setText(act1 + "\n" + act2);
+        }else{
+            if(myPokemon.getCurrentLife() > 0 && enemy.getCurrentLife() > 0){
+                int random = (int)(Math.random() * 2);
+                myPokemon.setCurrentLife(enemy.PokemonAttack(enemy.getMovements().get(random), myPokemon));
+                if(myPokemon.getCurrentLife() <= 0){
+                        myPokemon.setCurrentLife(0);
+                    }
+                try {
+                    UpdateView();
+                } catch (IOException ex) {
+                    java.util.logging.Logger.getLogger(FightView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                }
+                act1 = "El " + enemy.getName() + " enemigo ha usado " + enemy.getMovements().get(random).getName();
+                if(myPokemon.getCurrentLife() > 0 && enemy.getCurrentLife() > 0){
+                    enemy.setCurrentLife(myPokemon.PokemonAttack(myPokemon.getMovements().get(0), enemy));
+                    if(enemy.getCurrentLife() <= 0){
+                        enemy.setCurrentLife(0);
+                    }
+                    try {
+                        UpdateView();
+                    } catch (IOException ex) {
+                        java.util.logging.Logger.getLogger(FightView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                    }
+                    act2 = "Tu " + myPokemon.getName() + " ha usado " + myPokemon.getMovements().get(0).getName();
+                }
+            }
+            Text.setText(act1 + "\n" + act2);
+        }
+        
+        if(myPokemon.getCurrentLife() == 0){
+            // TO DO lógica cuando mi pokemon muera
+            String dead = "Tu " + myPokemon.getName() + " ha sido debilitado.";
+            String nextPokemon = "";
+            deadPokemons++;
+            if(controller.getTeamSize() > deadPokemons){
+                myPokemon = controller.getPokemon(deadPokemons);
+                nextPokemon = "Has sacado a " + myPokemon.getName();
+            }
+            Text.setText(dead + "\n" + nextPokemon);
+            try {
+                UpdateView();
+            } catch (IOException ex) {
+                java.util.logging.Logger.getLogger(FightView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            }
+        }else if(enemy.getCurrentLife() == 0){
+            try {
+                Evolution capture = new Evolution(enemy, controller);
+            } catch (IOException ex) {
+                java.util.logging.Logger.getLogger(FightView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                java.util.logging.Logger.getLogger(FightView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            }
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_Attack1ActionPerformed
 
     private void Attack2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Attack2ActionPerformed
-        
+        String act1 = "";
+        String act2 = "";
+        if(myPokemon.getSpeed() >= enemy.getSpeed()){
+            if(myPokemon.getCurrentLife() > 0 && enemy.getCurrentLife() > 0){
+                enemy.setCurrentLife(myPokemon.PokemonAttack(myPokemon.getMovements().get(1), enemy));
+                if(enemy.getCurrentLife() <= 0){
+                    enemy.setCurrentLife(0);
+                }
+                try {
+                    UpdateView();
+                } catch (IOException ex) {
+                    java.util.logging.Logger.getLogger(FightView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                }
+                act1 = "Tu " + myPokemon.getName() + " ha usado " + myPokemon.getMovements().get(1).getName();
+                if(myPokemon.getCurrentLife() > 0 && enemy.getCurrentLife() > 0){
+                    int random = (int)(Math.random() * 2);
+                    myPokemon.setCurrentLife(enemy.PokemonAttack(enemy.getMovements().get(random), myPokemon));
+                    if(myPokemon.getCurrentLife() <= 0){
+                        myPokemon.setCurrentLife(0);
+                    }
+                    try {
+                        UpdateView();
+                    } catch (IOException ex) {
+                        java.util.logging.Logger.getLogger(FightView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                    }
+                    act2 = "El " + enemy.getName() + " enemigo ha usado " + enemy.getMovements().get(random).getName();
+                }
+            }
+            Text.setText(act1 + "\n" + act2);
+        }else{
+            if(myPokemon.getCurrentLife() > 0 && enemy.getCurrentLife() > 0){
+                int random = (int)(Math.random() * 2);
+                myPokemon.setCurrentLife(enemy.PokemonAttack(enemy.getMovements().get(random), myPokemon));
+                if(myPokemon.getCurrentLife() <= 0){
+                    myPokemon.setCurrentLife(0);
+                }
+                try {
+                    UpdateView();
+                } catch (IOException ex) {
+                    java.util.logging.Logger.getLogger(FightView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                }
+                act1 = "El " + enemy.getName() + " enemigo ha usado " + enemy.getMovements().get(random).getName();
+                if(myPokemon.getCurrentLife() > 0 && enemy.getCurrentLife() > 0){
+                    enemy.setCurrentLife(myPokemon.PokemonAttack(myPokemon.getMovements().get(1), enemy));
+                    if(enemy.getCurrentLife() <= 0){
+                        enemy.setCurrentLife(0);
+                    }
+                    try {
+                        UpdateView();
+                    } catch (IOException ex) {
+                        java.util.logging.Logger.getLogger(FightView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                    }
+                    act2 = "Tu " + myPokemon.getName() + " ha usado " + myPokemon.getMovements().get(1).getName();
+                }
+            }
+            Text.setText(act1 + "\n" + act2);
+        }
+        if(myPokemon.getCurrentLife() == 0){
+            // TO DO lógica cuando mi pokemon muera
+            String dead = "Tu " + myPokemon.getName() + " ha sido debilitado.";
+            String nextPokemon = "";
+            deadPokemons++;
+            if(controller.getTeamSize() > deadPokemons){
+                myPokemon = controller.getPokemon(deadPokemons);
+                nextPokemon = "Has sacado a " + myPokemon.getName();
+            }
+            Text.setText(dead + "\n" + nextPokemon);
+            try {
+                UpdateView();
+            } catch (IOException ex) {
+                java.util.logging.Logger.getLogger(FightView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            }
+            if(controller.getTeamSize() == deadPokemons){
+                Text.setText("Todos tus Pokemon han sido debilitados. ¡Buena suerte para la próxima!");
+            }
+        }else if(enemy.getCurrentLife() == 0){
+            try {
+                Evolution capture = new Evolution(enemy, controller);
+            } catch (IOException ex) {
+                java.util.logging.Logger.getLogger(FightView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                java.util.logging.Logger.getLogger(FightView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            }
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_Attack2ActionPerformed
 
-    public void UpdateView(Pokemon myPokemon, Pokemon enemy){
+    public void UpdateView() throws IOException{
+        MyPokemon.setIcon(controller.LabelSetImg(myPokemon));
+        MyPokemon.setIcon(controller.ScaleIcon(MyPokemon, 200, 200));
         MyPokemonHP.setText("HP: " + myPokemon.getCurrentLife() + " / " + myPokemon.getLife());
         EnemyHP.setText("HP: " + enemy.getCurrentLife() + " / " + enemy.getLife());
+        Attack1.setText(myPokemon.getMovements().get(0).getName());
+        Attack2.setText(myPokemon.getMovements().get(1).getName());
     }
 
 
@@ -143,6 +304,10 @@ public class FightView extends javax.swing.JFrame {
     private javax.swing.JLabel EnemyHP;
     private javax.swing.JLabel MyPokemon;
     private javax.swing.JLabel MyPokemonHP;
+    private javax.swing.JTextArea Text;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

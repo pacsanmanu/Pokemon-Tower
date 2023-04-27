@@ -143,6 +143,9 @@
               <Image iconType="3" name="/images/charmander.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel2MouseClicked"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="Icon icono3 = jLabel2.getIcon();&#xa;Image imagen3 = ((ImageIcon) icono3).getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);&#xa;ImageIcon nuevoIcono3 = new ImageIcon(imagen3);&#xa;jLabel2.setIcon(nuevoIcono3);"/>
           </AuxValues>
@@ -161,6 +164,9 @@
               <Image iconType="3" name="/images/squirtle.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel3MouseClicked"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="Icon icono2 = jLabel3.getIcon();&#xa;Image imagen2 = ((ImageIcon) icono2).getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);&#xa;ImageIcon nuevoIcono2 = new ImageIcon(imagen2);&#xa;jLabel3.setIcon(nuevoIcono2);"/>
           </AuxValues>

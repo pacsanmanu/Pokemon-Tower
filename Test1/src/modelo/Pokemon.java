@@ -1,6 +1,8 @@
 package modelo;
 
 import java.util.ArrayList;
+import controlador.Control;
+import java.sql.SQLException;
 
 public class Pokemon {
     private String name;
@@ -103,8 +105,18 @@ public class Pokemon {
         this.movements.add(m);
     }
     
-    public void Attack(Pokemon p){
-        
+    public int PokemonAttack(Movement m, Pokemon p){
+        int remainingLife = 0;
+        int damage = (this.getAttack() + m.getPower()) / 5;
+        remainingLife = p.getCurrentLife() - damage;
+        return remainingLife;
+    }
+    
+    public Pokemon Evolve() throws SQLException{
+        Control controller = new Control();
+        String sentencia = "SELECT * FROM POKEMON WHERE NAME = "+ this.getEvolution() +";";
+        Pokemon evolution = controller.createPokemon(sentencia);
+        return evolution;
     }
 }
     
