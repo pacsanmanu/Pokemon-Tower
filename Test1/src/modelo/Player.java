@@ -1,6 +1,7 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Player {
     private ArrayList<Pokemon> team;
@@ -8,6 +9,7 @@ public class Player {
     
     public Player(){
         team = new ArrayList<Pokemon>();
+        captureProbability = 30;
     }
     
     public void addPokemon(Pokemon p){
@@ -22,11 +24,20 @@ public class Player {
         this.captureProbability = probability;
     }
     
-    public void increaseCaptureProbability(int probability){
+    public void increaseCaptureProbability(){
+        int probability = 10;
         this.captureProbability = this.captureProbability + probability;
     }
     
     public int getCaptureProbability(){
         return this.captureProbability;
+    }
+    
+    public void increaseCompletedLevels(){
+        for(Pokemon p : team){
+            if(p.getEvolution() != null){
+                p.setCompletedLevels(p.getCompletedLevels() + 1);
+            }
+        }
     }
 }

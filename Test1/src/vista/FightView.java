@@ -19,19 +19,19 @@ public class FightView extends javax.swing.JFrame {
     private int deadPokemons;
     private Control controller;
     
-    public FightView(Control control, int power) throws IOException, SQLException {
+    public FightView(Control control) throws IOException, SQLException {
         initComponents();
         this.myPokemon = null;
         this.enemy = null;
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         controller = control;
-        controller.addPokemon(controller.createRandomPokemon(1));
+        controller.healPokemons();
         myPokemon = controller.getPokemon(0);
         MyPokemon.setIcon(controller.LabelSetImg(myPokemon));
         MyPokemon.setIcon(controller.ScaleIcon(MyPokemon, 200, 200));
         MyPokemonHP.setText("HP: " + myPokemon.getCurrentLife() + " / " + myPokemon.getLife());
-        enemy = controller.createRandomPokemon(power);
+        enemy = controller.createRandomPokemon(control.getPowerLevel());
         Enemy.setIcon(controller.LabelSetImg(enemy));
         Enemy.setIcon(controller.ScaleIcon(Enemy, 200, 200));
         EnemyHP.setText("HP: " + enemy.getCurrentLife() + " / " + enemy.getLife());
@@ -65,21 +65,21 @@ public class FightView extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 102, 102));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(Enemy, new org.netbeans.lib.awtextra.AbsoluteConstraints(247, 132, 180, 102));
+        jPanel1.add(Enemy, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 210, 190));
 
         MyPokemon.setBackground(new java.awt.Color(51, 153, 255));
         MyPokemon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/charmander.png"))); // NOI18N
-        jPanel1.add(MyPokemon, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 355, 150, 102));
+        jPanel1.add(MyPokemon, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 180, 180));
 
         MyPokemonHP.setFont(new java.awt.Font("Source Code Pro", 1, 14)); // NOI18N
         MyPokemonHP.setForeground(new java.awt.Color(255, 255, 255));
         MyPokemonHP.setText("PS: ");
-        jPanel1.add(MyPokemonHP, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 295, 110, -1));
+        jPanel1.add(MyPokemonHP, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 295, 150, -1));
 
         EnemyHP.setFont(new java.awt.Font("Source Code Pro", 1, 14)); // NOI18N
         EnemyHP.setForeground(new java.awt.Color(255, 255, 255));
         EnemyHP.setText("PS: ");
-        jPanel1.add(EnemyHP, new org.netbeans.lib.awtextra.AbsoluteConstraints(278, 85, 110, -1));
+        jPanel1.add(EnemyHP, new org.netbeans.lib.awtextra.AbsoluteConstraints(278, 85, 160, -1));
 
         Attack1.setText("jButton1");
         Attack1.addActionListener(new java.awt.event.ActionListener() {
@@ -189,12 +189,11 @@ public class FightView extends javax.swing.JFrame {
             }
         }else if(enemy.getCurrentLife() == 0){
             try {
-                Evolution capture = new Evolution(enemy, controller);
+                Defeated capture = new Defeated(controller, enemy);
             } catch (IOException ex) {
                 java.util.logging.Logger.getLogger(FightView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                java.util.logging.Logger.getLogger(FightView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             }
+            controller.increasePowerLevel();
             this.setVisible(false);
         }
     }//GEN-LAST:event_Attack1ActionPerformed
@@ -277,12 +276,11 @@ public class FightView extends javax.swing.JFrame {
             }
         }else if(enemy.getCurrentLife() == 0){
             try {
-                Evolution capture = new Evolution(enemy, controller);
+                Defeated capture = new Defeated(controller, enemy);
             } catch (IOException ex) {
                 java.util.logging.Logger.getLogger(FightView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                java.util.logging.Logger.getLogger(FightView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             }
+            controller.increasePowerLevel();
             this.setVisible(false);
         }
     }//GEN-LAST:event_Attack2ActionPerformed

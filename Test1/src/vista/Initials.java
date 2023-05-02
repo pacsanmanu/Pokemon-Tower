@@ -186,7 +186,7 @@ public class Initials extends javax.swing.JFrame{
         }
         controller.addPokemon(bulbasaur);
         try {
-            FightView level1 = new FightView(controller, 1);
+            FightView level1 = new FightView(controller);
         } catch (IOException ex) {
             Logger.getLogger(Initials.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -206,7 +206,7 @@ public class Initials extends javax.swing.JFrame{
         }
         controller.addPokemon(squirtle);
         try {
-            FightView level1 = new FightView(controller, 1);
+            FightView level1 = new FightView(controller);
         } catch (IOException ex) {
             Logger.getLogger(Initials.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -226,7 +226,7 @@ public class Initials extends javax.swing.JFrame{
         }
         controller.addPokemon(charmander);
         try {
-            FightView level1 = new FightView(controller, 1);
+            FightView level1 = new FightView(controller);
         } catch (IOException ex) {
             Logger.getLogger(Initials.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {

@@ -112,11 +112,22 @@ public class Pokemon {
         return remainingLife;
     }
     
-    public Pokemon Evolve() throws SQLException{
+    public void Evolve() throws SQLException{
         Control controller = new Control();
-        String sentencia = "SELECT * FROM POKEMON WHERE NAME = "+ this.getEvolution() +";";
-        Pokemon evolution = controller.createPokemon(sentencia);
-        return evolution;
+        if(this.getEvolution() != null){
+            String sentencia = "SELECT * FROM POKEMON WHERE NAME = '" + this.getEvolution() +"';";
+            Pokemon evolution = controller.createPokemon(sentencia);
+            this.name = evolution.name;
+            this.attack = evolution.attack;
+            this.life = evolution.life;
+            this.speed = evolution.speed;
+            this.image = evolution.image;
+            this.movements = evolution.movements;
+            this.power = evolution.power;
+            this.evolution = evolution.evolution;
+            this.completed_levels = 0;
+            this.current_life = evolution.current_life;
+        }
     }
 }
     

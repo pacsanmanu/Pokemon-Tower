@@ -21,9 +21,11 @@ import vista.Initials;
 
 public class Control {
     private Player player;
+    private int powerLevel;
     
     public Control(){
         player = new Player();
+        powerLevel = 1;
     }
     
     public void addPokemon(Pokemon p){
@@ -32,6 +34,10 @@ public class Control {
     
     public int getTeamSize(){
         return this.player.getPokemons().size();
+    }
+    
+    public ArrayList<Pokemon> getTeam(){
+        return player.getPokemons();
     }
     
     public Pokemon getPokemon(int index){
@@ -122,7 +128,7 @@ public class Control {
     }
     
     public void healPokemons(){
-        for(Pokemon p : this.player.getPokemons()){
+        for(Pokemon p : getTeam()){
             p.setCurrentLife(p.getLife());
         }
     }
@@ -131,12 +137,23 @@ public class Control {
         return player.getCaptureProbability();
     }
     
-    public void increaseCaptureProbability(int probability){
-        player.increaseCaptureProbability(probability);
+    public void increaseCaptureProbability(){
+        player.increaseCaptureProbability();
     }
     
     public void setCaptureProbability(int probability){
         player.setCaptureProbability(probability);
     }
     
+    public void increaseCompletedLevels(){
+        player.increaseCompletedLevels();
+    }
+    
+    public void increasePowerLevel(){
+        this.powerLevel++;
+    }
+    
+    public int getPowerLevel(){
+        return this.powerLevel;
+    }
 }
