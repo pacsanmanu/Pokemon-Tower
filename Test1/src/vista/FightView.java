@@ -20,21 +20,24 @@ public class FightView extends javax.swing.JFrame {
     private Control controller;
     
     public FightView(Control control) throws IOException, SQLException {
+        controller = control;
         initComponents();
         this.myPokemon = null;
         this.enemy = null;
         this.setVisible(true);
         this.setLocationRelativeTo(null);
-        controller = control;
+        this.setTitle("Pokemon Tower");
+        ImageIcon icon = controller.FrameSetImg("pokeball.png");
+        this.setIconImage(icon.getImage());
         controller.healPokemons();
         myPokemon = controller.getPokemon(0);
         MyPokemon.setIcon(controller.LabelSetImg(myPokemon));
         MyPokemon.setIcon(controller.ScaleIcon(MyPokemon, 200, 200));
-        MyPokemonHP.setText("HP: " + myPokemon.getCurrentLife() + " / " + myPokemon.getLife());
+        MyPokemonHP.setText("<html>" + myPokemon.getName().toUpperCase() + "   " + "<font color='#83FF00'>"+ myPokemon.getCurrentLife() + " / " + myPokemon.getLife() +"</font></html>");
         enemy = controller.createRandomPokemon(control.getPowerLevel());
         Enemy.setIcon(controller.LabelSetImg(enemy));
         Enemy.setIcon(controller.ScaleIcon(Enemy, 200, 200));
-        EnemyHP.setText("HP: " + enemy.getCurrentLife() + " / " + enemy.getLife());
+        EnemyHP.setText("<html>" + enemy.getName().toUpperCase() + "   " + "<font color='#83FF00'>"+ enemy.getCurrentLife() + " / " + enemy.getLife() +"</font></html>");
         Attack1.setText(myPokemon.getMovements().get(0).getName());
         Attack2.setText(myPokemon.getMovements().get(1).getName());
     }
@@ -74,12 +77,12 @@ public class FightView extends javax.swing.JFrame {
         MyPokemonHP.setFont(new java.awt.Font("Source Code Pro", 1, 14)); // NOI18N
         MyPokemonHP.setForeground(new java.awt.Color(255, 255, 255));
         MyPokemonHP.setText("PS: ");
-        jPanel1.add(MyPokemonHP, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 295, 150, -1));
+        jPanel1.add(MyPokemonHP, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 210, -1));
 
         EnemyHP.setFont(new java.awt.Font("Source Code Pro", 1, 14)); // NOI18N
         EnemyHP.setForeground(new java.awt.Color(255, 255, 255));
         EnemyHP.setText("PS: ");
-        jPanel1.add(EnemyHP, new org.netbeans.lib.awtextra.AbsoluteConstraints(278, 85, 160, -1));
+        jPanel1.add(EnemyHP, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, 190, -1));
 
         Attack1.setText("jButton1");
         Attack1.addActionListener(new java.awt.event.ActionListener() {
@@ -272,7 +275,7 @@ public class FightView extends javax.swing.JFrame {
                 java.util.logging.Logger.getLogger(FightView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             }
             if(controller.getTeamSize() == deadPokemons){
-                Text.setText("Todos tus Pokemon han sido debilitados. ¡Buena suerte para la próxima!");
+                Text.setText("Todos tus Pokemon han sido debilitados.\n¡Buena suerte para la próxima!");
             }
         }else if(enemy.getCurrentLife() == 0){
             try {
@@ -288,8 +291,20 @@ public class FightView extends javax.swing.JFrame {
     public void UpdateView() throws IOException{
         MyPokemon.setIcon(controller.LabelSetImg(myPokemon));
         MyPokemon.setIcon(controller.ScaleIcon(MyPokemon, 200, 200));
-        MyPokemonHP.setText("HP: " + myPokemon.getCurrentLife() + " / " + myPokemon.getLife());
-        EnemyHP.setText("HP: " + enemy.getCurrentLife() + " / " + enemy.getLife());
+        if(myPokemon.getCurrentLife() < myPokemon.getLife() / 3){
+            MyPokemonHP.setText("<html>" + myPokemon.getName().toUpperCase() + "   " + "<font color='#FF1C1C'>"+ myPokemon.getCurrentLife() + " / " + myPokemon.getLife() +"</font></html>");   
+        }else if(myPokemon.getCurrentLife() < myPokemon.getLife() / 2){
+            MyPokemonHP.setText("<html>" + myPokemon.getName().toUpperCase() + "   " + "<font color='#FFFF1C'>"+ myPokemon.getCurrentLife() + " / " + myPokemon.getLife() +"</font></html>");
+        }else{
+            MyPokemonHP.setText("<html>" + myPokemon.getName().toUpperCase() + "   " + "<font color='#80FF00'>"+ myPokemon.getCurrentLife() + " / " + myPokemon.getLife() +"</font></html>");
+        }
+        if(enemy.getCurrentLife() < enemy.getLife() / 3){
+            EnemyHP.setText("<html>" + enemy.getName().toUpperCase() + "   " + "<font color='#FF1C1C'>"+ enemy.getCurrentLife() + " / " + enemy.getLife() +"</font></html>");
+        }else if(enemy.getCurrentLife() < enemy.getLife() / 2){
+            EnemyHP.setText("<html>" + enemy.getName().toUpperCase() + "   " + "<font color='#FFFF1C'>"+ enemy.getCurrentLife() + " / " + enemy.getLife() +"</font></html>");
+        }else{
+            EnemyHP.setText("<html>" + enemy.getName().toUpperCase() + "   " + "<font color='#80FF00'>"+ enemy.getCurrentLife() + " / " + enemy.getLife() +"</font></html>");
+        }
         Attack1.setText(myPokemon.getMovements().get(0).getName());
         Attack2.setText(myPokemon.getMovements().get(1).getName());
     }

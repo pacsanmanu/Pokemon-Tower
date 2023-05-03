@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import modelo.Pokemon;
 
 public class Defeated extends javax.swing.JFrame {
@@ -16,6 +17,9 @@ public class Defeated extends javax.swing.JFrame {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+        this.setTitle("Pokemon Tower");
+        ImageIcon icon = controller.FrameSetImg("pokeball.png");
+        this.setIconImage(icon.getImage());
         this.controller = controller;
         this.pokemon = pokemon;
         String defeat = "Has derrotado a " + pokemon.getName();
@@ -90,7 +94,7 @@ public class Defeated extends javax.swing.JFrame {
         }else{
             jOptionPane1.showMessageDialog(null, "No has podido capturar a " + pokemon.getName());
         }
-        controller.setCaptureProbability(30);
+        controller.setCaptureProbability(35);
         for(Pokemon p : controller.getTeam()){
             if(p.getCompletedLevels() >= 2){
                 try {

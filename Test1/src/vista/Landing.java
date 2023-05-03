@@ -2,14 +2,22 @@ package vista;
 
 import java.awt.*;
 import javax.swing.*;
+import controlador.Control;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Landing extends javax.swing.JFrame {
 
-    public Landing() {
+    public Landing() throws IOException {
+        Control controller = new Control();
         initComponents();
         getContentPane().setBackground(Color.WHITE);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+        this.setTitle("Pokemon Tower");
+        ImageIcon icon = controller.FrameSetImg("pokeball.png");
+        this.setIconImage(icon.getImage());
     }
 
     @SuppressWarnings("unchecked")
@@ -54,8 +62,12 @@ public class Landing extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void DoorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DoorMouseClicked
-        Initials initials = new Initials();
-        initials.setVisible(true);
+        Initials initials;
+        try {
+            initials = new Initials();
+        } catch (IOException ex) {
+            Logger.getLogger(Landing.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.setVisible(false);
     }//GEN-LAST:event_DoorMouseClicked
 

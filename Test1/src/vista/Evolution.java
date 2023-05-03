@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import modelo.Pokemon;
 
 public class Evolution extends javax.swing.JFrame {
@@ -15,6 +16,9 @@ public class Evolution extends javax.swing.JFrame {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+        this.setTitle("Pokemon Tower");
+        ImageIcon icon = controller.FrameSetImg("pokeball.png");
+        this.setIconImage(icon.getImage());
         this.pokemon = pokemon;
         this.controller = controller;
         String message = "¡Tu " + pokemon.getName() + " ha evolucionado!";
