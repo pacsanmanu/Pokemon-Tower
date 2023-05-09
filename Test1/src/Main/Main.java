@@ -1,11 +1,12 @@
 package main;
 
+import java.io.IOException;
 import java.sql.*;
 import vista.Landing;
 
 public class Main {
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException, IOException {
         Landing landing1 = new Landing();
         bd.Conexion.Conectar();
         

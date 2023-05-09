@@ -1,15 +1,9 @@
 package vista;
 import controlador.*;
-import java.awt.Dimension;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
-import java.lang.System.Logger;
-import java.lang.System.Logger.Level;
 import java.sql.SQLException;
-import javax.imageio.ImageIO;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.*;
 import javax.swing.*;
 
@@ -82,7 +76,7 @@ public class FightView extends javax.swing.JFrame {
         EnemyHP.setFont(new java.awt.Font("Source Code Pro", 1, 14)); // NOI18N
         EnemyHP.setForeground(new java.awt.Color(255, 255, 255));
         EnemyHP.setText("PS: ");
-        jPanel1.add(EnemyHP, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, 190, -1));
+        jPanel1.add(EnemyHP, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 190, -1));
 
         Attack1.setText("jButton1");
         Attack1.addActionListener(new java.awt.event.ActionListener() {
@@ -190,13 +184,29 @@ public class FightView extends javax.swing.JFrame {
             } catch (IOException ex) {
                 java.util.logging.Logger.getLogger(FightView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             }
-        }else if(enemy.getCurrentLife() == 0){
-            try {
-                Defeated capture = new Defeated(controller, enemy);
-            } catch (IOException ex) {
-                java.util.logging.Logger.getLogger(FightView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            if(controller.getTeamSize() == deadPokemons){
+                try {
+                    End end = new End();
+                } catch (IOException ex) {
+                    Logger.getLogger(FightView.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                this.setVisible(false);
             }
-            controller.increasePowerLevel();
+        }else if(enemy.getCurrentLife() == 0){
+            if(controller.getPowerLevel() == 11){
+                try {
+                    Victory victory = new Victory(controller);
+                } catch (IOException ex) {
+                    Logger.getLogger(FightView.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }else{
+                try {
+                Defeated capture = new Defeated(controller, enemy);
+                } catch (IOException ex) {
+                    java.util.logging.Logger.getLogger(FightView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                }
+                controller.increasePowerLevel();
+            }
             this.setVisible(false);
         }
     }//GEN-LAST:event_Attack1ActionPerformed
@@ -275,15 +285,28 @@ public class FightView extends javax.swing.JFrame {
                 java.util.logging.Logger.getLogger(FightView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             }
             if(controller.getTeamSize() == deadPokemons){
-                Text.setText("Todos tus Pokemon han sido debilitados.\n¡Buena suerte para la próxima!");
+                try {
+                    End end = new End();
+                } catch (IOException ex) {
+                    Logger.getLogger(FightView.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                this.setVisible(false);
             }
         }else if(enemy.getCurrentLife() == 0){
-            try {
+            if(controller.getPowerLevel() == 11){
+                try {
+                    Victory victory = new Victory(controller);
+                } catch (IOException ex) {
+                    Logger.getLogger(FightView.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }else{
+                try {
                 Defeated capture = new Defeated(controller, enemy);
-            } catch (IOException ex) {
-                java.util.logging.Logger.getLogger(FightView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    java.util.logging.Logger.getLogger(FightView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                }
+                controller.increasePowerLevel();
             }
-            controller.increasePowerLevel();
             this.setVisible(false);
         }
     }//GEN-LAST:event_Attack2ActionPerformed

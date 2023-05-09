@@ -75,7 +75,7 @@ public class Defeated extends javax.swing.JFrame {
         Text1.setFont(new java.awt.Font("Source Code Pro", 1, 14)); // NOI18N
         Text1.setForeground(new java.awt.Color(255, 255, 255));
         Text1.setText("Has derrotado a pikachu");
-        jPanel1.add(Text1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 250, 70));
+        jPanel1.add(Text1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 300, 70));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/capture-background.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -94,7 +94,7 @@ public class Defeated extends javax.swing.JFrame {
         }else{
             jOptionPane1.showMessageDialog(null, "No has podido capturar a " + pokemon.getName());
         }
-        controller.setCaptureProbability(35);
+        controller.setCaptureProbability(40);
         for(Pokemon p : controller.getTeam()){
             if(p.getCompletedLevels() >= 2){
                 try {

@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Player {
+    private String username;
     private ArrayList<Pokemon> team;
     private int captureProbability;
     
     public Player(){
         team = new ArrayList<Pokemon>();
-        captureProbability = 30;
+        captureProbability = 40;
     }
     
     public void addPokemon(Pokemon p){
@@ -39,5 +40,13 @@ public class Player {
                 p.setCompletedLevels(p.getCompletedLevels() + 1);
             }
         }
+    }
+    
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
