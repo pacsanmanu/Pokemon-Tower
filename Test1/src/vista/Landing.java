@@ -62,13 +62,12 @@ public class Landing extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void DoorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DoorMouseClicked
-        Initials initials;
         try {
-            initials = new Initials();
+            this.dispose();
+            Initials initials = new Initials();
         } catch (IOException ex) {
             Logger.getLogger(Landing.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.setVisible(false);
     }//GEN-LAST:event_DoorMouseClicked
 
 

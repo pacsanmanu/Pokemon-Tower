@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package vista;
 
 import javax.swing.*;
@@ -15,21 +11,50 @@ import controlador.Control;
 
 
 public class Initials extends javax.swing.JFrame{
+    Control controller;
     
     public Initials() throws IOException {
-        Control controller = new Control();
+        controller = new Control();
         initComponents();
         this.setVisible(true);
         this.setTitle("Pokemon Tower");
         this.setLocationRelativeTo(null);
         ImageIcon icon = controller.FrameSetImg("pokeball.png");
         this.setIconImage(icon.getImage());
+        String userName;
+        do {
+            userName = JOptionPane.showInputDialog("Ingrese su nombre:");
+        } while (userName == null || userName.trim().isEmpty());
+        String sentencia = "INSERT INTO user (username) VALUES ('" + userName + "');";
+        ResultSet resultSet = bd.Conexion.EjecutarSentencia("SELECT COUNT(*) FROM USER WHERE USERNAME = '"+ userName +"';");
+        try {
+            resultSet.next();
+        } catch (SQLException ex) {
+            Logger.getLogger(Initials.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        int count = 0;
+        try {
+            count = resultSet.getInt(1);
+        } catch (SQLException ex) {
+            Logger.getLogger(Initials.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(count < 1){
+            if(!userName.equals("")){
+                
+            }
+            bd.Conexion.EjecutarUpdate(sentencia);
+            jOptionPane1.showMessageDialog(null, "Bienvenido " + userName);
+        }else{
+            jOptionPane1.showMessageDialog(null, "Bienvenido de nuevo " + userName);
+        }
+        controller.setUsername(userName);
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jOptionPane1 = new javax.swing.JOptionPane();
         jPanel1 = new javax.swing.JPanel();
         QueInicial = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -42,17 +67,28 @@ public class Initials extends javax.swing.JFrame{
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
+        setMinimumSize(new java.awt.Dimension(480, 730));
+        setPreferredSize(new java.awt.Dimension(480, 730));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setPreferredSize(new java.awt.Dimension(484, 729));
+        jPanel1.setMaximumSize(new java.awt.Dimension(480, 730));
+        jPanel1.setPreferredSize(new java.awt.Dimension(480, 730));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         QueInicial.setFont(new java.awt.Font("Source Code Pro", 1, 14)); // NOI18N
+        QueInicial.setForeground(new java.awt.Color(255, 255, 255));
         QueInicial.setText("¿Qué Pokemon inicial quieres escoger?");
+        jPanel1.add(QueInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 55, -1, 44));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 111, 420, 10));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 311, 420, 10));
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 514, 420, 10));
+        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 715, 420, 10));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/charmander.png"))); // NOI18N
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -60,9 +96,16 @@ public class Initials extends javax.swing.JFrame{
                 jLabel2MouseClicked(evt);
             }
         });
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 560, 125, 76));
+        Icon icono3 = jLabel2.getIcon();
+        Image imagen3 = ((ImageIcon) icono3).getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
+        ImageIcon nuevoIcono3 = new ImageIcon(imagen3);
+        jLabel2.setIcon(nuevoIcono3);
 
         jLabel1.setFont(new java.awt.Font("Source Code Pro", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Charmander");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 650, -1, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/squirtle.png"))); // NOI18N
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -70,9 +113,16 @@ public class Initials extends javax.swing.JFrame{
                 jLabel3MouseClicked(evt);
             }
         });
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, 128, 79));
+        Icon icono2 = jLabel3.getIcon();
+        Image imagen2 = ((ImageIcon) icono2).getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
+        ImageIcon nuevoIcono2 = new ImageIcon(imagen2);
+        jLabel3.setIcon(nuevoIcono2);
 
         jLabel4.setFont(new java.awt.Font("Source Code Pro", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Squirtle");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 450, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bulbasaur.png"))); // NOI18N
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -80,93 +130,27 @@ public class Initials extends javax.swing.JFrame{
                 jLabel5MouseClicked(evt);
             }
         });
-
-        jLabel6.setFont(new java.awt.Font("Source Code Pro", 0, 14)); // NOI18N
-        jLabel6.setText("Bulbasaur");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(170, 170, 170)
-                                .addComponent(jLabel4))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(135, 135, 135)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(136, 136, 136)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addGap(169, 169, 169)
-                                    .addComponent(jLabel6)))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(194, 194, 194)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(73, 73, 73)
-                        .addComponent(QueInicial)))
-                .addContainerGap(31, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addComponent(QueInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel6)
-                .addGap(31, 31, 31)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4)
-                .addGap(31, 31, 31)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addGap(36, 36, 36)
-                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36))
-        );
-
-        Icon icono3 = jLabel2.getIcon();
-        Image imagen3 = ((ImageIcon) icono3).getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
-        ImageIcon nuevoIcono3 = new ImageIcon(imagen3);
-        jLabel2.setIcon(nuevoIcono3);
-        Icon icono2 = jLabel3.getIcon();
-        Image imagen2 = ((ImageIcon) icono2).getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
-        ImageIcon nuevoIcono2 = new ImageIcon(imagen2);
-        jLabel3.setIcon(nuevoIcono2);
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 114, -1));
         Icon icono = jLabel5.getIcon();
         Image imagen = ((ImageIcon) icono).getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
         ImageIcon nuevoIcono = new ImageIcon(imagen);
         jLabel5.setIcon(nuevoIcono);
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 477, 761));
+        jLabel6.setFont(new java.awt.Font("Source Code Pro", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Bulbasaur");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, -1, -1));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/initials-background.png"))); // NOI18N
+        jLabel7.setText("jLabel7");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 477, 730));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        Control controller = new Control();
         String sentencia = "SELECT * FROM POKEMON WHERE NAME = 'bulbasaur';";
         Pokemon bulbasaur = null;
         try {
@@ -182,11 +166,10 @@ public class Initials extends javax.swing.JFrame{
         } catch (SQLException ex) {
             Logger.getLogger(Initials.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        Control controller = new Control();
         String sentencia = "SELECT * FROM POKEMON WHERE NAME = 'squirtle';";
         Pokemon squirtle = null;
         try {
@@ -202,11 +185,10 @@ public class Initials extends javax.swing.JFrame{
         } catch (SQLException ex) {
             Logger.getLogger(Initials.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        Control controller = new Control();
         String sentencia = "SELECT * FROM POKEMON WHERE NAME = 'charmander';";
         Pokemon charmander = null;
         try {
@@ -222,7 +204,7 @@ public class Initials extends javax.swing.JFrame{
         } catch (SQLException ex) {
             Logger.getLogger(Initials.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_jLabel2MouseClicked
     
     
@@ -234,6 +216,8 @@ public class Initials extends javax.swing.JFrame{
     private javax.swing.JLabel jLabel4;
     private static javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;

@@ -100,7 +100,7 @@ public class Defeated extends javax.swing.JFrame {
                 try {
                     Evolution evolution = new Evolution(controller, p);
                     evolve = true;
-                    this.setVisible(false);
+                    this.dispose();
                     break;
                 } catch (IOException ex) {
                     Logger.getLogger(Defeated.class.getName()).log(Level.SEVERE, null, ex);
@@ -112,7 +112,7 @@ public class Defeated extends javax.swing.JFrame {
         if(!evolve){
             try {
                 FightView fight = new FightView(controller);
-                this.setVisible(false);
+                this.dispose();
             } catch (IOException ex) {
                 Logger.getLogger(Defeated.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
@@ -130,7 +130,7 @@ public class Defeated extends javax.swing.JFrame {
                 try {
                     Evolution evolution = new Evolution(controller, p);
                     evolve = true;
-                    this.setVisible(false);
+                    this.dispose();
                     break;
                 } catch (IOException ex) {
                     Logger.getLogger(Defeated.class.getName()).log(Level.SEVERE, null, ex);
@@ -142,7 +142,7 @@ public class Defeated extends javax.swing.JFrame {
         if(!evolve){
             try {
                 FightView fight = new FightView(controller);
-                this.setVisible(false);
+                this.dispose();
             } catch (IOException ex) {
                 Logger.getLogger(Defeated.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {

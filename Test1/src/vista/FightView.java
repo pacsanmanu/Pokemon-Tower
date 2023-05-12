@@ -1,17 +1,20 @@
 package vista;
 import controlador.*;
-import java.io.IOException;
+import java.io.*;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.sound.sampled.AudioSystem;
 import modelo.*;
 import javax.swing.*;
+import javax.sound.sampled.Clip;
 
 public class FightView extends javax.swing.JFrame {
     private Pokemon myPokemon;
     private Pokemon enemy;
     private int deadPokemons;
     private Control controller;
+    private Clip clip;
     
     public FightView(Control control) throws IOException, SQLException {
         controller = control;
@@ -23,6 +26,16 @@ public class FightView extends javax.swing.JFrame {
         this.setTitle("Pokemon Tower");
         ImageIcon icon = controller.FrameSetImg("pokeball.png");
         this.setIconImage(icon.getImage());
+        // Music
+        try {
+            File musicFile = new File("src/audio/fight.wav");
+            clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(musicFile));
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        // End of music
         controller.healPokemons();
         myPokemon = controller.getPokemon(0);
         MyPokemon.setIcon(controller.LabelSetImg(myPokemon));
@@ -190,7 +203,8 @@ public class FightView extends javax.swing.JFrame {
                 } catch (IOException ex) {
                     Logger.getLogger(FightView.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                this.setVisible(false);
+                clip.stop();
+                this.dispose();
             }
         }else if(enemy.getCurrentLife() == 0){
             if(controller.getPowerLevel() == 11){
@@ -207,7 +221,8 @@ public class FightView extends javax.swing.JFrame {
                 }
                 controller.increasePowerLevel();
             }
-            this.setVisible(false);
+            clip.stop();
+            this.dispose();
         }
     }//GEN-LAST:event_Attack1ActionPerformed
 
@@ -290,7 +305,8 @@ public class FightView extends javax.swing.JFrame {
                 } catch (IOException ex) {
                     Logger.getLogger(FightView.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                this.setVisible(false);
+                clip.stop();
+                this.dispose();
             }
         }else if(enemy.getCurrentLife() == 0){
             if(controller.getPowerLevel() == 11){
@@ -307,7 +323,8 @@ public class FightView extends javax.swing.JFrame {
                 }
                 controller.increasePowerLevel();
             }
-            this.setVisible(false);
+            clip.stop();
+            this.dispose();
         }
     }//GEN-LAST:event_Attack2ActionPerformed
 

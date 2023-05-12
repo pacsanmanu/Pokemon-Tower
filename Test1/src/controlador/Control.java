@@ -18,6 +18,7 @@ import modelo.Pokemon;
 public class Control {
     private Player player;
     private int powerLevel;
+    private String username;
     
     public Control(){
         player = new Player();
@@ -165,5 +166,13 @@ public class Control {
     
     public int getPowerLevel(){
         return this.powerLevel;
+    }
+    
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
