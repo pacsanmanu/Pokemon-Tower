@@ -14,12 +14,14 @@ import javax.swing.ImageIcon;
 import modelo.Movement;
 import modelo.Player;
 import modelo.Pokemon;
+import utils.Utils;
 
 public class Control {
     private Player player;
     private int powerLevel;
     private String username;
-    
+    private int victoryNum;
+
     public Control(){
         player = new Player();
         powerLevel = 1;
@@ -175,4 +177,13 @@ public class Control {
     public void setUsername(String username) {
         this.username = username;
     }
+
+    public int getVictoryNum() {
+        return victoryNum;
+    }
+
+    public void setVictoryNum(int victoryNum) {
+        this.victoryNum = victoryNum;
+    }
 }
+

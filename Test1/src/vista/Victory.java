@@ -1,15 +1,20 @@
 package vista;
 
 import controlador.Control;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import java.sql.*;
+import modelo.Pokemon;
 
 public class Victory extends javax.swing.JFrame {
     Control controller;
 
-    public Victory(Control controller) throws IOException {
+    public Victory(Control controller) throws IOException, SQLException {
         this.controller = controller;
         initComponents();
         this.setVisible(true);
@@ -30,6 +35,41 @@ public class Victory extends javax.swing.JFrame {
         }
         if(controller.getTeam().size() > 5){
             poke6.setIcon(controller.LabelSetImg(controller.getPokemon(5)));
+        }
+        ResultSet resultado = bd.Conexion.EjecutarSentencia("SELECT VICTORYNUM FROM USER WHERE username = '" + controller.getUsername() + "';");
+        resultado.next();
+        int victoryNum = resultado.getInt("victoryNum");
+        victoryNum++;
+        bd.Conexion.EjecutarUpdate("UPDATE USER SET VICTORYNUM = " + victoryNum + " WHERE USERNAME = '" + controller.getUsername() + "';");
+        
+        String nombreArchivo = "src/victoryLogs/" + controller.getUsername() + victoryNum + ".txt";
+
+        try {
+            File archivo = new File(nombreArchivo);
+
+            if (archivo.createNewFile()) {
+                System.out.println("Archivo creado exitosamente.");
+            } else {
+                System.out.println("El archivo ya existe.");
+            }
+
+            // Escribir contenido en el archivo
+            FileWriter fileWriter = new FileWriter(archivo);
+            BufferedWriter writer = new BufferedWriter(fileWriter);
+            writer.write("Nombre de usuario: " + controller.getUsername());
+            writer.newLine();
+
+            // Escribir los nombres de los Pokémon utilizados en el archivo
+            writer.write("Pokémon utilizados para ganar:");
+            writer.newLine();
+            for (Pokemon pokemon : controller.getTeam()) {
+                writer.write(pokemon.getName());
+                writer.newLine();
+            }
+            writer.close();
+            System.out.println("Archivo escrito exitosamente.");
+        } catch (IOException e) {
+            System.err.println("Error al escribir el archivo: " + e.getMessage());
         }
 }
 

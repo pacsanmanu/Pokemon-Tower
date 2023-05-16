@@ -4,8 +4,10 @@ import java.awt.*;
 import javax.swing.*;
 import controlador.Control;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.sound.sampled.Clip;
 
 public class Landing extends javax.swing.JFrame {
 
@@ -66,6 +68,8 @@ public class Landing extends javax.swing.JFrame {
             this.dispose();
             Initials initials = new Initials();
         } catch (IOException ex) {
+            Logger.getLogger(Landing.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
             Logger.getLogger(Landing.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_DoorMouseClicked

@@ -8,13 +8,14 @@ import javax.sound.sampled.AudioSystem;
 import modelo.*;
 import javax.swing.*;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class FightView extends javax.swing.JFrame {
     private Pokemon myPokemon;
     private Pokemon enemy;
     private int deadPokemons;
     private Control controller;
-    private Clip clip;
     
     public FightView(Control control) throws IOException, SQLException {
         controller = control;
@@ -26,16 +27,6 @@ public class FightView extends javax.swing.JFrame {
         this.setTitle("Pokemon Tower");
         ImageIcon icon = controller.FrameSetImg("pokeball.png");
         this.setIconImage(icon.getImage());
-        // Music
-        try {
-            File musicFile = new File("src/audio/fight.wav");
-            clip = AudioSystem.getClip();
-            clip.open(AudioSystem.getAudioInputStream(musicFile));
-            clip.loop(Clip.LOOP_CONTINUOUSLY);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        // End of music
         controller.healPokemons();
         myPokemon = controller.getPokemon(0);
         MyPokemon.setIcon(controller.LabelSetImg(myPokemon));
@@ -203,14 +194,26 @@ public class FightView extends javax.swing.JFrame {
                 } catch (IOException ex) {
                     Logger.getLogger(FightView.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                clip.stop();
                 this.dispose();
             }
         }else if(enemy.getCurrentLife() == 0){
-            if(controller.getPowerLevel() == 11){
+            if(controller.getPowerLevel() == 10 && controller.getVictoryNum() < 3){
                 try {
                     Victory victory = new Victory(controller);
+                } catch (IOException | SQLException ex) {
+                    Logger.getLogger(FightView.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }else if(controller.getPowerLevel() == 10 && controller.getVictoryNum() >= 3){
+                try {
+                Defeated capture = new Defeated(controller, enemy);
                 } catch (IOException ex) {
+                    java.util.logging.Logger.getLogger(FightView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                }
+                controller.increasePowerLevel();
+            }else if(controller.getPowerLevel() == 11){
+                try {
+                    Victory victory = new Victory(controller);
+                } catch (IOException | SQLException ex) {
                     Logger.getLogger(FightView.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }else{
@@ -221,7 +224,6 @@ public class FightView extends javax.swing.JFrame {
                 }
                 controller.increasePowerLevel();
             }
-            clip.stop();
             this.dispose();
         }
     }//GEN-LAST:event_Attack1ActionPerformed
@@ -305,14 +307,26 @@ public class FightView extends javax.swing.JFrame {
                 } catch (IOException ex) {
                     Logger.getLogger(FightView.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                clip.stop();
                 this.dispose();
             }
         }else if(enemy.getCurrentLife() == 0){
-            if(controller.getPowerLevel() == 11){
+            if(controller.getPowerLevel() == 10 && controller.getVictoryNum() < 3){
                 try {
                     Victory victory = new Victory(controller);
+                } catch (IOException | SQLException ex) {
+                    Logger.getLogger(FightView.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }else if(controller.getPowerLevel() == 10 && controller.getVictoryNum() >= 3){
+                try {
+                Defeated capture = new Defeated(controller, enemy);
                 } catch (IOException ex) {
+                    java.util.logging.Logger.getLogger(FightView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                }
+                controller.increasePowerLevel();
+            }else if(controller.getPowerLevel() == 11){
+                try {
+                    Victory victory = new Victory(controller);
+                } catch (IOException | SQLException ex) {
                     Logger.getLogger(FightView.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }else{
@@ -323,7 +337,6 @@ public class FightView extends javax.swing.JFrame {
                 }
                 controller.increasePowerLevel();
             }
-            clip.stop();
             this.dispose();
         }
     }//GEN-LAST:event_Attack2ActionPerformed

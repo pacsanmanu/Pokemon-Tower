@@ -2,6 +2,7 @@ package modelo;
 
 import java.util.ArrayList;
 import controlador.Control;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Pokemon {
@@ -128,6 +129,55 @@ public class Pokemon {
             this.completed_levels = 0;
             this.current_life = evolution.current_life;
         }
+    }
+    
+    public static Pokemon createPokemon(String sentencia)throws SQLException{
+        ResultSet resultado = bd.Conexion.EjecutarSentencia(sentencia);
+        String name = "";
+        int attack = 0;
+        int life = 0;
+        int speed = 0;
+        String image = "";
+        int power = 0;
+        String evolution = "";
+        String movement1_name = "";
+        String movement2_name = "";
+        while(resultado.next()){
+            name = resultado.getString("name");
+            attack = resultado.getInt("atack");
+            life = resultado.getInt("life");
+            speed = resultado.getInt("speed");
+            image = resultado.getString("image");
+            power = resultado.getInt("power");
+            evolution = resultado.getString("evolution");
+            movement1_name = resultado.getString("movement1");
+            movement2_name = resultado.getString("movement2");
+        }
+        resultado.close();
+        ResultSet movimiento1 = bd.Conexion.EjecutarSentencia("Select * from movement where name = '" + movement1_name + "';");
+        String name_movimiento1 = "";
+        int power_movimiento1 = 0;
+        while(movimiento1.next()){
+            name_movimiento1 = movimiento1.getString("name");
+            power_movimiento1 = movimiento1.getInt("power");
+        }
+        movimiento1.close();
+        Movement m1 = new Movement(name_movimiento1, power_movimiento1);
+        
+        ResultSet movimiento2 = bd.Conexion.EjecutarSentencia("Select * from movement where name = '" + movement2_name + "';");
+        String name_movimiento2 = "";
+        int power_movimiento2 = 0;
+        while(movimiento2.next()){
+            name_movimiento2 = movimiento2.getString("name");
+            power_movimiento2 = movimiento2.getInt("power");
+        }
+        movimiento2.close();
+        Movement m2 = new Movement(name_movimiento2, power_movimiento2);
+        ArrayList<Movement> movements = new ArrayList<>();
+        movements.add(m1);
+        movements.add(m2);
+        Pokemon initial = new Pokemon(name, attack, life, speed, image, movements, power, evolution);
+        return initial;
     }
 }
     

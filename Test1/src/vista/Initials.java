@@ -8,12 +8,18 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.Pokemon;
 import controlador.Control;
+import java.io.File;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 
 public class Initials extends javax.swing.JFrame{
     Control controller;
-    
-    public Initials() throws IOException {
+    private Clip clip;
+
+    public Initials() throws IOException, SQLException {
         controller = new Control();
         initComponents();
         this.setVisible(true);
@@ -21,6 +27,15 @@ public class Initials extends javax.swing.JFrame{
         this.setLocationRelativeTo(null);
         ImageIcon icon = controller.FrameSetImg("pokeball.png");
         this.setIconImage(icon.getImage());
+        try {
+            File musicFile = new File("src/audio/music.wav");
+            clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(musicFile));
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
+            clip.stop();
+        } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        }
         String userName;
         do {
             userName = JOptionPane.showInputDialog("Ingrese su nombre:");
@@ -47,7 +62,11 @@ public class Initials extends javax.swing.JFrame{
         }else{
             jOptionPane1.showMessageDialog(null, "Bienvenido de nuevo " + userName);
         }
+        ResultSet resultado = bd.Conexion.EjecutarSentencia("SELECT VICTORYNUM FROM USER WHERE USERNAME = '" + userName + "';");
+        resultado.next();
+        int victories = resultado.getInt("victoryNum");
         controller.setUsername(userName);
+        controller.setVictoryNum(victories);
     }
 
     @SuppressWarnings("unchecked")
