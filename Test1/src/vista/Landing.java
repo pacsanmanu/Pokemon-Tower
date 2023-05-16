@@ -10,9 +10,21 @@ import java.util.logging.Logger;
 import javax.sound.sampled.Clip;
 
 public class Landing extends javax.swing.JFrame {
+    Control controller;
 
     public Landing() throws IOException {
-        Control controller = new Control();
+        controller = new Control();
+        initComponents();
+        getContentPane().setBackground(Color.WHITE);
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+        this.setTitle("Pokemon Tower");
+        ImageIcon icon = controller.FrameSetImg("pokeball.png");
+        this.setIconImage(icon.getImage());
+    }
+    
+    public Landing(Control control) throws IOException {
+        controller = control;
         initComponents();
         getContentPane().setBackground(Color.WHITE);
         this.setLocationRelativeTo(null);
@@ -66,7 +78,7 @@ public class Landing extends javax.swing.JFrame {
     private void DoorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DoorMouseClicked
         try {
             this.dispose();
-            Initials initials = new Initials();
+            Initials initials = new Initials(controller);
         } catch (IOException ex) {
             Logger.getLogger(Landing.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {

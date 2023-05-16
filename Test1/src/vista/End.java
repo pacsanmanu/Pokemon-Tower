@@ -7,9 +7,10 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 
 public class End extends javax.swing.JFrame {
+    Control controller;
 
-    public End() throws IOException {
-        Control controller = new Control();
+    public End(Control controller) throws IOException {
+        this.controller = controller;
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
@@ -77,7 +78,9 @@ public class End extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
-            Landing landing = new Landing();
+            controller.resetPowerLevel();
+            controller.clearTeam();
+            Landing landing = new Landing(controller);
         } catch (IOException ex) {
             Logger.getLogger(End.class.getName()).log(Level.SEVERE, null, ex);
         }

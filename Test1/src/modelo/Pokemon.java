@@ -179,5 +179,18 @@ public class Pokemon {
         Pokemon initial = new Pokemon(name, attack, life, speed, image, movements, power, evolution);
         return initial;
     }
+    
+    public static Pokemon createRandomPokemon(int power)throws SQLException{
+        int count = 0;
+        String sentencia = "select count(*) from pokemon where power = " + power + ";";
+        ResultSet resultado = bd.Conexion.EjecutarSentencia(sentencia);
+        while(resultado.next()){
+            count = resultado.getInt(1);
+        }
+        resultado.close();
+        int random = (int)(Math.random() * count);
+        sentencia = "SELECT * FROM pokemon where power = " + power + " LIMIT " + random + ", 1;";
+        return createPokemon(sentencia);
+    }
 }
     

@@ -18,9 +18,9 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 public class Initials extends javax.swing.JFrame{
     Control controller;
     private Clip clip;
-
-    public Initials() throws IOException, SQLException {
-        controller = new Control();
+    
+    public Initials(Control controller) throws IOException, SQLException {
+        this.controller = controller;
         initComponents();
         this.setVisible(true);
         this.setTitle("Pokemon Tower");
@@ -32,40 +32,42 @@ public class Initials extends javax.swing.JFrame{
             clip = AudioSystem.getClip();
             clip.open(AudioSystem.getAudioInputStream(musicFile));
             clip.loop(Clip.LOOP_CONTINUOUSLY);
-            clip.stop();
         } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
             e.printStackTrace();
         }
-        String userName;
-        do {
-            userName = JOptionPane.showInputDialog("Ingrese su nombre:");
-        } while (userName == null || userName.trim().isEmpty());
-        String sentencia = "INSERT INTO user (username) VALUES ('" + userName + "');";
-        ResultSet resultSet = bd.Conexion.EjecutarSentencia("SELECT COUNT(*) FROM USER WHERE USERNAME = '"+ userName +"';");
-        try {
-            resultSet.next();
-        } catch (SQLException ex) {
-            Logger.getLogger(Initials.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        int count = 0;
-        try {
-            count = resultSet.getInt(1);
-        } catch (SQLException ex) {
-            Logger.getLogger(Initials.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        if(count < 1){
-            if(!userName.equals("")){
-                
+        if(controller.getUsername().equals("")){
+            String userName;
+            do {
+                userName = JOptionPane.showInputDialog("Ingrese su nombre:");
+            } while (userName == null || userName.trim().isEmpty());
+            String sentencia = "INSERT INTO user (username) VALUES ('" + userName + "');";
+            ResultSet resultSet = bd.Conexion.EjecutarSentencia("SELECT COUNT(*) FROM USER WHERE USERNAME = '"+ userName +"';");
+            try {
+                resultSet.next();
+            } catch (SQLException ex) {
+                Logger.getLogger(Initials.class.getName()).log(Level.SEVERE, null, ex);
             }
-            bd.Conexion.EjecutarUpdate(sentencia);
-            jOptionPane1.showMessageDialog(null, "Bienvenido " + userName);
-        }else{
-            jOptionPane1.showMessageDialog(null, "Bienvenido de nuevo " + userName);
+            int count = 0;
+            try {
+                count = resultSet.getInt(1);
+            } catch (SQLException ex) {
+                Logger.getLogger(Initials.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if(count < 1){
+                if(!userName.equals("")){
+
+                }
+                bd.Conexion.EjecutarUpdate(sentencia);
+                jOptionPane1.showMessageDialog(null, "Bienvenido " + userName);
+            }else{
+                jOptionPane1.showMessageDialog(null, "Bienvenido de nuevo " + userName);
+            }
+            
+            controller.setUsername(userName);
         }
-        ResultSet resultado = bd.Conexion.EjecutarSentencia("SELECT VICTORYNUM FROM USER WHERE USERNAME = '" + userName + "';");
+        ResultSet resultado = bd.Conexion.EjecutarSentencia("SELECT VICTORYNUM FROM USER WHERE USERNAME = '" + controller.getUsername() + "';");
         resultado.next();
         int victories = resultado.getInt("victoryNum");
-        controller.setUsername(userName);
         controller.setVictoryNum(victories);
     }
 

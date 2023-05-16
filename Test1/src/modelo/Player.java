@@ -49,4 +49,14 @@ public class Player {
     public void setUsername(String username) {
         this.username = username;
     }
+    
+    public void healPokemons(){
+        for(Pokemon p : this.team){
+            p.setCurrentLife(p.getLife());
+        }
+    }
+    
+    public void clearTeam(){
+        this.team = new ArrayList<>();
+    }
 }

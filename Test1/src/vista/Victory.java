@@ -42,7 +42,7 @@ public class Victory extends javax.swing.JFrame {
         victoryNum++;
         bd.Conexion.EjecutarUpdate("UPDATE USER SET VICTORYNUM = " + victoryNum + " WHERE USERNAME = '" + controller.getUsername() + "';");
         
-        String nombreArchivo = "src/victoryLogs/" + controller.getUsername() + victoryNum + ".txt";
+        String nombreArchivo = "src/victoryLogs/" + controller.getUsername() + victoryNum + ".md";
 
         try {
             File archivo = new File(nombreArchivo);
@@ -53,19 +53,21 @@ public class Victory extends javax.swing.JFrame {
                 System.out.println("El archivo ya existe.");
             }
 
-            // Escribir contenido en el archivo
             FileWriter fileWriter = new FileWriter(archivo);
             BufferedWriter writer = new BufferedWriter(fileWriter);
-            writer.write("Nombre de usuario: " + controller.getUsername());
+            writer.write("##Nombre de usuario");
             writer.newLine();
-
-            // Escribir los nombres de los Pokémon utilizados en el archivo
-            writer.write("Pokémon utilizados para ganar:");
+            writer.write("###" + controller.getUsername());
+            if(victoryNum > 3){
+            writer.write("![alt text](../images/challenger.png)");}
+            writer.newLine();
+            writer.write("##Pokémon utilizados para ganar:");
             writer.newLine();
             for (Pokemon pokemon : controller.getTeam()) {
-                writer.write(pokemon.getName());
-                writer.newLine();
+                writer.write("![alt text](../images/" + pokemon.getName() + ".png)");
             }
+            writer.newLine();
+            writer.write("###Número de victorias: " + victoryNum);
             writer.close();
             System.out.println("Archivo escrito exitosamente.");
         } catch (IOException e) {
@@ -149,7 +151,9 @@ public class Victory extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
-            Landing landing = new Landing();
+            controller.clearTeam();
+            controller.resetPowerLevel();
+            Landing landing = new Landing(controller);
         } catch (IOException ex) {
             Logger.getLogger(Victory.class.getName()).log(Level.SEVERE, null, ex);
         }

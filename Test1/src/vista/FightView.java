@@ -38,6 +38,22 @@ public class FightView extends javax.swing.JFrame {
         EnemyHP.setText("<html>" + enemy.getName().toUpperCase() + "   " + "<font color='#83FF00'>"+ enemy.getCurrentLife() + " / " + enemy.getLife() +"</font></html>");
         Attack1.setText(myPokemon.getMovements().get(0).getName());
         Attack2.setText(myPokemon.getMovements().get(1).getName());
+        poke1.setIcon(controller.LabelSetImg(controller.getPokemon(0)));
+        if(controller.getTeam().size() > 1){
+             poke2.setIcon(controller.LabelSetImg(controller.getPokemon(1)));
+        }
+        if(controller.getTeam().size() > 2){
+            poke3.setIcon(controller.LabelSetImg(controller.getPokemon(2)));
+        }
+        if(controller.getTeam().size() > 3){
+            poke4.setIcon(controller.LabelSetImg(controller.getPokemon(3)));
+        }
+        if(controller.getTeam().size() > 4){
+            poke5.setIcon(controller.LabelSetImg(controller.getPokemon(4)));
+        }
+        if(controller.getTeam().size() > 5){
+            poke6.setIcon(controller.LabelSetImg(controller.getPokemon(5)));
+        }
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -53,7 +69,13 @@ public class FightView extends javax.swing.JFrame {
         Attack2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         Text = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
+        poke1 = new javax.swing.JLabel();
+        poke2 = new javax.swing.JLabel();
+        poke3 = new javax.swing.JLabel();
+        poke4 = new javax.swing.JLabel();
+        poke5 = new javax.swing.JLabel();
+        poke6 = new javax.swing.JLabel();
+        background = new javax.swing.JLabel();
 
         jOptionPane1.setFont(new java.awt.Font("Source Code Pro", 0, 12)); // NOI18N
         jOptionPane1.setMaximumSize(new java.awt.Dimension(600, 120));
@@ -105,9 +127,18 @@ public class FightView extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 542, 379, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/battle-background.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        poke1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bagon.png"))); // NOI18N
+        poke1.setText("jLabel2");
+        jPanel1.add(poke1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 630, 90, 80));
+        jPanel1.add(poke2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 630, 80, 80));
+        jPanel1.add(poke3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 630, 80, 80));
+        jPanel1.add(poke4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 630, 90, 80));
+        jPanel1.add(poke5, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 630, 80, 80));
+        jPanel1.add(poke6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 630, 90, 80));
+
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/battle-background.png"))); // NOI18N
+        background.setText("jLabel1");
+        jPanel1.add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 730));
 
@@ -190,7 +221,7 @@ public class FightView extends javax.swing.JFrame {
             }
             if(controller.getTeamSize() == deadPokemons){
                 try {
-                    End end = new End();
+                    End end = new End(controller);
                 } catch (IOException ex) {
                     Logger.getLogger(FightView.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -303,7 +334,7 @@ public class FightView extends javax.swing.JFrame {
             }
             if(controller.getTeamSize() == deadPokemons){
                 try {
-                    End end = new End();
+                    End end = new End(controller);
                 } catch (IOException ex) {
                     Logger.getLogger(FightView.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -371,9 +402,15 @@ public class FightView extends javax.swing.JFrame {
     private javax.swing.JLabel MyPokemon;
     private javax.swing.JLabel MyPokemonHP;
     private javax.swing.JTextArea Text;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel background;
     private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel poke1;
+    private javax.swing.JLabel poke2;
+    private javax.swing.JLabel poke3;
+    private javax.swing.JLabel poke4;
+    private javax.swing.JLabel poke5;
+    private javax.swing.JLabel poke6;
     // End of variables declaration//GEN-END:variables
 }
