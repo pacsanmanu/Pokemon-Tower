@@ -59,6 +59,12 @@ public class Control {
         ImageIcon img = util.LabelSetImg(p);
         return img;
     }
+        
+    public ImageIcon LabelSetBackImg(Pokemon p) throws IOException {
+        Utils util = new Utils();
+        ImageIcon img = util.LabelSetBackImg(p);
+        return img;
+    }
     
     public ImageIcon FrameSetImg(String imageName) throws IOException{
         Utils util = new Utils();

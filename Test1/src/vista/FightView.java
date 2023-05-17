@@ -29,7 +29,7 @@ public class FightView extends javax.swing.JFrame {
         this.setIconImage(icon.getImage());
         controller.healPokemons();
         myPokemon = controller.getPokemon(0);
-        MyPokemon.setIcon(controller.LabelSetImg(myPokemon));
+        MyPokemon.setIcon(controller.LabelSetBackImg(myPokemon));
         MyPokemon.setIcon(controller.ScaleIcon(MyPokemon, 200, 200));
         MyPokemonHP.setText("<html>" + myPokemon.getName().toUpperCase() + "   " + "<font color='#83FF00'>"+ myPokemon.getCurrentLife() + " / " + myPokemon.getLife() +"</font></html>");
         enemy = controller.createRandomPokemon(control.getPowerLevel());
@@ -373,7 +373,7 @@ public class FightView extends javax.swing.JFrame {
     }//GEN-LAST:event_Attack2ActionPerformed
 
     public void UpdateView() throws IOException{
-        MyPokemon.setIcon(controller.LabelSetImg(myPokemon));
+        MyPokemon.setIcon(controller.LabelSetBackImg(myPokemon));
         MyPokemon.setIcon(controller.ScaleIcon(MyPokemon, 200, 200));
         if(myPokemon.getCurrentLife() < myPokemon.getLife() / 3){
             MyPokemonHP.setText("<html>" + myPokemon.getName().toUpperCase() + "   " + "<font color='#FF1C1C'>"+ myPokemon.getCurrentLife() + " / " + myPokemon.getLife() +"</font></html>");   
