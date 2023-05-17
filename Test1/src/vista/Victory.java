@@ -55,19 +55,19 @@ public class Victory extends javax.swing.JFrame {
 
             FileWriter fileWriter = new FileWriter(archivo);
             BufferedWriter writer = new BufferedWriter(fileWriter);
-            writer.write("##Nombre de usuario");
+            writer.write("## Nombre de usuario");
             writer.newLine();
-            writer.write("###" + controller.getUsername());
+            writer.write("### " + controller.getUsername());
             if(victoryNum > 3){
             writer.write("![alt text](../images/challenger.png)");}
             writer.newLine();
-            writer.write("##Pokémon utilizados para ganar:");
+            writer.write("## Pokémon utilizados para ganar:");
             writer.newLine();
             for (Pokemon pokemon : controller.getTeam()) {
                 writer.write("![alt text](../images/" + pokemon.getName() + ".png)");
             }
             writer.newLine();
-            writer.write("###Número de victorias: " + victoryNum);
+            writer.write("### Número de victorias: " + victoryNum);
             writer.close();
             System.out.println("Archivo escrito exitosamente.");
         } catch (IOException e) {
