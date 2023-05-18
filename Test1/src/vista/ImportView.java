@@ -117,8 +117,11 @@ public class ImportView extends javax.swing.JFrame {
                 bd.Conexion.EjecutarUpdate(sentencia);
                 
                 String nombreArchivo = "src/import/importeds.md";
-                FileWriter filewriter = new FileWriter(nombreArchivo);
+                FileWriter filewriter = new FileWriter(nombreArchivo, true); // Utiliza el constructor con el segundo parámetro como 'true'
                 BufferedWriter writer = new BufferedWriter(filewriter);
+
+                // Resto de tu código para escribir en el archivo
+
                 writer.write("### Nombre del Pokemon: " + nombre);
                 writer.write("![alt text](../images/" + nombre + ".png)");
                 writer.newLine();
