@@ -91,7 +91,7 @@ public class ImportView extends javax.swing.JFrame {
     }//GEN-LAST:event_NoActionPerformed
 
     private void YesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YesActionPerformed
-        File fichero = new File("src/import/addPokemon.txt");
+        File fichero = new File("../import/addPokemon.txt");
         int cont = 0;
         try {
             Scanner lector = new Scanner(fichero);
