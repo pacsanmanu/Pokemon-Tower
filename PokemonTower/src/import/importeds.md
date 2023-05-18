@@ -4,9 +4,9 @@ Vida: 150
 Velocidad: 1
 Movimiento 1: golpe cuerpo
 Movimiento 2: terremoto
-### Nombre del Pokemon: juanTornay![alt text](../images/juanTornay.png)
+### Nombre del Pokemon: joaquin![alt text](../images/joaquin.png)
 Ataque: 1
 Vida: 2
-Velocidad: 1500
+Velocidad: 1
 Movimiento 1: placaje
-Movimiento 2: disparo demora
+Movimiento 2: retirarse

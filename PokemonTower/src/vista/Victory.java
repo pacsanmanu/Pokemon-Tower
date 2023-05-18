@@ -42,7 +42,7 @@ public class Victory extends javax.swing.JFrame {
         victoryNum++;
         bd.Conexion.EjecutarUpdate("UPDATE USER SET VICTORYNUM = " + victoryNum + " WHERE USERNAME = '" + controller.getUsername() + "';");
         
-        String nombreArchivo = "../victoryLogs/" + controller.getUsername() + victoryNum + ".md";
+        String nombreArchivo = "src/victoryLogs/" + controller.getUsername() + victoryNum + ".md";
 
         try {
             File archivo = new File(nombreArchivo);
