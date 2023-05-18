@@ -1,0 +1,1 @@
+falete, 500, 150, 1, golpe cuerpo, terremoto

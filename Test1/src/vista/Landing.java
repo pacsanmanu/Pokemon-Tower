@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.sound.sampled.Clip;
+import vista.ImportView;
 
 public class Landing extends javax.swing.JFrame {
     Control controller;
@@ -38,6 +38,8 @@ public class Landing extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        OptionPane = new javax.swing.JOptionPane();
+        addpokemon = new javax.swing.JLabel();
         Logo = new javax.swing.JLabel();
         Door = new javax.swing.JLabel();
         Banner = new javax.swing.JLabel();
@@ -46,9 +48,16 @@ public class Landing extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setMinimumSize(new java.awt.Dimension(484, 900));
-        setPreferredSize(new java.awt.Dimension(484, 900));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        addpokemon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/addpokemons.png"))); // NOI18N
+        addpokemon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addpokemonMouseClicked(evt);
+            }
+        });
+        getContentPane().add(addpokemon, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 830, -1, -1));
 
         Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
         getContentPane().add(Logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, 370, 200));
@@ -70,7 +79,7 @@ public class Landing extends javax.swing.JFrame {
         Door.setIcon(newdooricon);
 
         Banner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/banner.png"))); // NOI18N
-        getContentPane().add(Banner, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 900));
+        getContentPane().add(Banner, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 900));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -86,10 +95,17 @@ public class Landing extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_DoorMouseClicked
 
+    private void addpokemonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addpokemonMouseClicked
+        ImportView importPokes = new ImportView();
+        this.dispose();
+    }//GEN-LAST:event_addpokemonMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Banner;
     private javax.swing.JLabel Door;
     private javax.swing.JLabel Logo;
+    private javax.swing.JOptionPane OptionPane;
+    private javax.swing.JLabel addpokemon;
     // End of variables declaration//GEN-END:variables
 }
