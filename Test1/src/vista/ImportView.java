@@ -25,10 +25,12 @@ public class ImportView extends javax.swing.JFrame {
         this.setTitle("Pokemon Tower");
         ImageIcon icon = controller.FrameSetImg("pokeball.png");
         this.setIconImage(icon.getImage());
-        jTextArea1.setText("¿Quieres importar Pokemon desde src/import/addPokemon.txt ? \nEl formato a seguir es, separado por comas:\n"
+        jTextArea1.setText("¿Quieres importar Pokemon? \nEl formato a seguir es, separado por comas:\n"
                 + "1. Nombre (String)  2. Ataque (int)\n3. Vida (int)  4. Velocidad (int)\n"
                 + "5. Movimiento 1 (String)\n"
-                + "6. Movimiento 2 (String)");
+                + "6. Movimiento 2 (String)\n"
+                + "\n"
+                + "Seleccione el fichero usando el panel inferior");
     }
 
 
@@ -37,6 +39,7 @@ public class ImportView extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jFileChooser1 = new javax.swing.JFileChooser();
         No = new javax.swing.JButton();
         Yes = new javax.swing.JButton();
         jTextArea1 = new javax.swing.JTextArea();
@@ -47,6 +50,7 @@ public class ImportView extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(jFileChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, 440, 280));
 
         No.setFont(new java.awt.Font("Source Code Pro", 1, 14)); // NOI18N
         No.setText("No");
@@ -71,7 +75,7 @@ public class ImportView extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jTextArea1.setFocusable(false);
         jTextArea1.setRequestFocusEnabled(false);
-        jPanel1.add(jTextArea1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 440, 140));
+        jPanel1.add(jTextArea1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 440, 140));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/banner.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -91,7 +95,7 @@ public class ImportView extends javax.swing.JFrame {
     }//GEN-LAST:event_NoActionPerformed
 
     private void YesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YesActionPerformed
-        File fichero = new File("../import/addPokemon.txt");
+        File fichero = jFileChooser1.getSelectedFile();
         int cont = 0;
         try {
             Scanner lector = new Scanner(fichero);
@@ -150,6 +154,7 @@ public class ImportView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton No;
     private javax.swing.JButton Yes;
+    private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextArea jTextArea1;
