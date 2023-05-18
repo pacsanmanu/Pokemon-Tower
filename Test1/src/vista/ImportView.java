@@ -2,13 +2,16 @@
 package vista;
 
 import controlador.Control;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import modelo.Pokemon;
 import vista.Landing;
 
 
@@ -23,9 +26,9 @@ public class ImportView extends javax.swing.JFrame {
         ImageIcon icon = controller.FrameSetImg("pokeball.png");
         this.setIconImage(icon.getImage());
         jTextArea1.setText("¿Quieres importar Pokemon desde src/import/addPokemon.txt ? \nEl formato a seguir es, separado por comas:\n"
-                + "+ \"1. Nombre (String)  2. Ataque (int)  3. Vida (int)  4. Velocidad (int)\n"
-                + "+ \"5. Movimiento 1 (String) El movimiento debe existir en la BBDD\n"
-                + "+ \"6. Movimiento 2 (String) El movimiento debe existir en la BBDD\");");
+                + "1. Nombre (String)  2. Ataque (int)\n3. Vida (int)  4. Velocidad (int)\n"
+                + "5. Movimiento 1 (String)\n"
+                + "6. Movimiento 2 (String)");
     }
 
 
@@ -45,6 +48,7 @@ public class ImportView extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        No.setFont(new java.awt.Font("Source Code Pro", 1, 14)); // NOI18N
         No.setText("No");
         No.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -53,6 +57,7 @@ public class ImportView extends javax.swing.JFrame {
         });
         jPanel1.add(No, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 730, -1, -1));
 
+        Yes.setFont(new java.awt.Font("Source Code Pro", 1, 14)); // NOI18N
         Yes.setText("Si");
         Yes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,7 +67,10 @@ public class ImportView extends javax.swing.JFrame {
         jPanel1.add(Yes, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 730, -1, -1));
 
         jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Source Code Pro", 1, 12)); // NOI18N
         jTextArea1.setRows(5);
+        jTextArea1.setFocusable(false);
+        jTextArea1.setRequestFocusEnabled(false);
         jPanel1.add(jTextArea1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 440, 140));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/banner.png"))); // NOI18N
@@ -108,6 +116,23 @@ public class ImportView extends javax.swing.JFrame {
                 
                 bd.Conexion.EjecutarUpdate(sentencia);
                 
+                String nombreArchivo = "src/import/importeds.md";
+                FileWriter filewriter = new FileWriter(nombreArchivo);
+                BufferedWriter writer = new BufferedWriter(filewriter);
+                writer.write("### Nombre del Pokemon: " + nombre);
+                writer.write("![alt text](../images/" + nombre + ".png)");
+                writer.newLine();
+                writer.write("Ataque: " + ataque);
+                writer.newLine();
+                writer.write("Vida: " + vida);
+                writer.newLine();
+                writer.write("Velocidad: " + velocidad);
+                writer.newLine();
+                writer.write("Movimiento 1: " + movimiento1);
+                writer.newLine();
+                writer.write("Movimiento 2: " + movimiento2);
+                writer.newLine();
+                writer.close();
             }
             lector.close();
             Landing landing = new Landing();

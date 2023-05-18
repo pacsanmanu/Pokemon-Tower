@@ -96,7 +96,11 @@ public class Landing extends javax.swing.JFrame {
     }//GEN-LAST:event_DoorMouseClicked
 
     private void addpokemonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addpokemonMouseClicked
-        ImportView importPokes = new ImportView();
+        try {
+            ImportView importPokes = new ImportView();
+        } catch (IOException ex) {
+            Logger.getLogger(Landing.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();
     }//GEN-LAST:event_addpokemonMouseClicked
 

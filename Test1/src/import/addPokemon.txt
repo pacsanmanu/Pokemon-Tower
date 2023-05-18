@@ -1,1 +1,2 @@
 falete, 500, 150, 1, golpe cuerpo, terremoto
+juanTornay, 1, 2, 1500, placaje, disparo demora
