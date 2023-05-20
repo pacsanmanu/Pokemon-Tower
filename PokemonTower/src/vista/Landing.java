@@ -57,7 +57,7 @@ public class Landing extends javax.swing.JFrame {
                 addpokemonMouseClicked(evt);
             }
         });
-        getContentPane().add(addpokemon, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 830, -1, -1));
+        getContentPane().add(addpokemon, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 790, -1, -1));
 
         Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
         getContentPane().add(Logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, 370, 200));
