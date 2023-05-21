@@ -2,7 +2,7 @@
 
 <b>Pokemon Tower</b> es un juego de combates Pokemon, donde tendrás que superar varios niveles para llegar hasta la cima y proclamarte como campeón.
 
-Es mi primer proyecto en Java y mi proyecto final para el curso de DAW.
+Es mi primer proyecto en Java y mi proyecto final para el primer curso de DAW.
 
 Para acceder directamente a la instalación, pulse [aquí](#instalación)
 
