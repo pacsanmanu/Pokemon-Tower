@@ -69,6 +69,7 @@ Una vez completas la torre y te proclamas como campeón, se generará un archivo
 
 Para los jugadores que hayan completado la torre 3 veces, se desbloqueará un nuevo nivel aún más desafiante, así que si quieres descubrirlo, ¡no dudes en jugarlo!
 
+----------------
 
 ## Instalación
 
