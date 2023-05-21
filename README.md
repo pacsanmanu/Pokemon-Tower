@@ -74,5 +74,6 @@ Para los jugadores que hayan completado la torre 3 veces, se desbloqueará un nu
 
 1. Descargar o clonar el repositorio.
 2. Acceder a "PokemonTower/src/bd" e importar el fichero <b>"pokemontower.sql"</b> a <b>Xampp</b>.
-3. Modificar las variables del inicio del archivo "PokemonTower/src/bd/conexion.java" para que se adapten a tu equipo. <b>Introducir el puerto correcto en la URL y modificar user y pass.</b>
-4. Acceder a <b>/dist/PokemonTower.jar</b> ¡y a disfrutar del juego!
+3. Abrir el proyecto desde NetBeans o Eclipse
+4. Modificar las variables del inicio del archivo "PokemonTower/src/bd/conexion.java" para que se adapten a tu equipo. <b>Introducir el puerto correcto en la URL y modificar user y pass.</b>
+5. ¡Ejecutar el proyecto y a disfrutar del juego!

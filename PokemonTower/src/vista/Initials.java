@@ -27,14 +27,17 @@ public class Initials extends javax.swing.JFrame{
         this.setLocationRelativeTo(null);
         ImageIcon icon = controller.FrameSetImg("pokeball.png");
         this.setIconImage(icon.getImage());
-        try {
+        if(controller.getUsername().equals("")){
+            try {
             File musicFile = new File("src/audio/music.wav");
             clip = AudioSystem.getClip();
             clip.open(AudioSystem.getAudioInputStream(musicFile));
             clip.loop(Clip.LOOP_CONTINUOUSLY);
-        } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
-            e.printStackTrace();
+            } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
+                e.printStackTrace();
+            }
         }
+        
         if(controller.getUsername().equals("")){
             String userName;
             do {
