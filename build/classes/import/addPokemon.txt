@@ -1,2 +1,0 @@
-falete, 500, 150, 1, golpe cuerpo, terremoto
-joaquin, 1, 2, 1, placaje, retirarse

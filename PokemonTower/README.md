@@ -1,4 +1,4 @@
-![alt text](PokemonTower/documentation/logo.png)
+![alt text](documentation/logo.png)
 
 <b>Pokemon Tower</b> es un juego de combates Pokemon, donde tendrás que superar varios niveles para llegar hasta la cima y proclamarte como campeón.
 
@@ -12,20 +12,20 @@ Para acceder directamente a la instalación, pulse [aquí](#instalación)
 
 Al iniciar la aplicación, entraremos a la siguiente ventana:
 
-![alt text](PokemonTower/documentation/1.png)
+![alt text](documentation/1.png)
 
 1. Puerta que nos da acceso a la torre, y así a comenzar el juego.
-2. Menú para importar Pokemon. Desde un fichero, línea por línea, se leen los datos escritos y se utilizan para la creación de nuevos Pokemon en nuestra base de datos. El formato establecido se especifica en el menú. Los Pokemon importados no aparecerán en nuestro juego, Pero quedarán recogidos [aquí](PokemonTower/src/import/importeds.md)
+2. Menú para importar Pokemon. Desde un fichero, línea por línea, se leen los datos escritos y se utilizan para la creación de nuevos Pokemon en nuestra base de datos. El formato establecido se especifica en el menú. Los Pokemon importados no aparecerán en nuestro juego, Pero quedarán recogidos [aquí](src/import/importeds.md)
 
 Una vez que pulsemos la puerta de acceso a la torre, nos aparecen los Pokemon iniciales y un pop-up para introducir nuestro nombre de usuario, vital para ciertas mecánicas del juego:
 
-![alt text](PokemonTower/documentation/2.png)
+![alt text](documentation/2.png)
 
 Es importante saber que el usuario introducido se almacenará en nuestra base de datos si no existe, y si existe, obtendrá el número de victorias que ya ha acumulado el usuario.
 
 Tras introducir nuestro nombre de usuario y elegir uno de los Pokemon iniciales, comenzará nuestro primer combate.
 
-![alt text](PokemonTower/documentation/3.png)
+![alt text](documentation/3.png)
 
 El Pokemon generado para combatir contra nosotros es aleatorio. En nuestra base de datos figuran una gran variedad de Pokemon, teniendo cada uno de ellos un nivel de poder.
 
@@ -39,7 +39,7 @@ Cuando la vida de un Pokemon se encuentra por debajo del 50%, su color cambia a 
 
 Debajo del text area, podemos ver todos los Pokemon en nuestro equipo. Ahora vemos esto con más detalle. Ahora, vamos a derrotar a Pikachu.
 
-![alt text](PokemonTower/documentation/4.png)
+![alt text](documentation/4.png)
 
 Cuando derrotamos a un Pokemon, tenemos la posibilidad de capturarlo para añadirlo a nuestro equipo. 
 
@@ -47,15 +47,15 @@ La probabilidad inicial de captura es de 40%. Si decidimos capturarlo, la probab
 
 Voy a decidir no capturarlo y pasar al siguiente nivel.
 
-![alt text](PokemonTower/documentation/5.png)
+![alt text](documentation/5.png)
 
 En el nivel 2, el Pokemon que ha aparecido es un Zubat. He decidido capturarlo.
 
 Tras 2 niveles superados, si el primer Pokemon de nuestro equipo tiene evolución, este evolucionará. Si no tuviese evolución, lo haría el siguiente Pokemon de nuestro equipo, si es que este Pokemon ya ha superado 2 niveles.
 
-![alt text](PokemonTower/documentation/6.png)
+![alt text](documentation/6.png)
 
-![alt text](PokemonTower/documentation/7.png)
+![alt text](documentation/7.png)
 
 Tras haber capturado un nuevo Pokemon y haber evolucionado otro, vemos como nuestro equipo Pokemon ha cambiado, actualizando sus sprites.
 
@@ -65,7 +65,7 @@ Nuestro Bulbasaur ha evolucionado a Ivysaur, aumentando sus estadísticas de com
 
 La mecánica del juego es la misma hasta superar todos los niveles. Si todos tus Pokemon son derrotados, puedes volver a intentarlo desde el inicio.
 
-Una vez completas la torre y te proclamas como campeón, se generará un archivo Markdown guardando tus resultados, uno por cada vez que se supera el juego, como [este](PokemonTower/src/victoryLogs/mpacheco1.md)
+Una vez completas la torre y te proclamas como campeón, se generará un archivo Markdown guardando tus resultados, uno por cada vez que se supera el juego, como [este](src/victoryLogs/mpacheco1.md)
 
 Para los jugadores que hayan completado la torre 3 veces, se desbloqueará un nuevo nivel aún más desafiante, así que si quieres descubrirlo, ¡no dudes en jugarlo!
 
@@ -73,6 +73,6 @@ Para los jugadores que hayan completado la torre 3 veces, se desbloqueará un nu
 ## Instalación
 
 1. Descargar o clonar el repositorio.
-2. Acceder a "PokemonTower/src/bd" e importar el fichero <b>"pokemontower.sql"</b> a <b>Xampp</b>.
-3. Modificar las variables del inicio del archivo "PokemonTower/src/bd/conexion.java" para que se adapten a tu equipo. <b>Introducir el puerto correcto en la URL y modificar user y pass.</b>
+2. Acceder a "src/bd" e importar el fichero <b>"pokemontower.sql"</b> a <b>Xampp</b>.
+3. Modificar las variables del inicio del archivo "src/bd/conexion.java" para que se adapten a tu equipo. <b>Introducir el puerto correcto en la URL y modificar user y pass.</b>
 4. Acceder a <b>/dist/PokemonTower.jar</b> ¡y a disfrutar del juego!
